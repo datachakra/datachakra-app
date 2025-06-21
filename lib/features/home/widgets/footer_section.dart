@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
 import 'package:url_launcher/url_launcher.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
-import '../../../core/utils/responsive_utils.dart';import '../../../shared/widgets/gradient_button.dart';
+import '../../../core/utils/responsive_utils.dart';
+import '../../../core/widgets/logo_widget.dart';
+import '../../../shared/widgets/gradient_button.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
@@ -82,7 +83,7 @@ class FooterSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
+                SizedBox(
                   width: 300,
                   child: TextField(
                     decoration: InputDecoration(
@@ -210,31 +211,7 @@ class FooterSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Logo/Brand
-        Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                borderRadius: BorderRadius.circular(AppConstants.radiusM),
-              ),
-              child: const Icon(
-                Icons.auto_awesome,
-                color: Colors.white,
-                size: 24,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Text(
-              'DataChakra',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+        const FooterLogo(),
         const SizedBox(height: 16),
         Text(
           'Transform your career with the most comprehensive AI/ML learning platform. Master the journey from foundations to enlightenment.',

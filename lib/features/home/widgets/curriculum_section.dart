@@ -199,16 +199,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                           : AppColors.textSecondary,
                     ),
                   ),
-                  if (isSelected && !isDesktop) ...[
-                    const SizedBox(height: 4),
-                    Text(
-                      chakra['duration'],
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: color,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+                  // Duration removed to prevent mobile overlap
                 ],
               ),
             ),
@@ -267,23 +258,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                         color: AppColors.textSecondary,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: color.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(AppConstants.radiusM),
-                      ),
-                      child: Text(
-                        chakra['duration'],
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: color,
-                        ),
-                      ),
-                    ),
+                    // Duration badge removed for cleaner design
                   ],
                 ),
               ),

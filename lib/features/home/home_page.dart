@@ -9,6 +9,7 @@ import 'widgets/faq_section.dart';
 import 'widgets/footer_section.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/widgets/logo_widget.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -129,31 +130,7 @@ class _HomePageState extends State<HomePage> {
       child: Row(
         children: [
           // Logo
-          Row(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.circular(AppConstants.radiusM),
-                ),
-                child: const Icon(
-                  Icons.auto_awesome,
-                  color: Colors.white,
-                  size: 24,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Text(
-                'DataChakra',
-                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ],
-          ),
+          const HeaderLogo(),
           
           const Spacer(),
           
