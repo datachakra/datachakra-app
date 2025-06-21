@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_constants.dart';
 
@@ -103,14 +102,6 @@ class _LogoImage extends StatelessWidget {
     );
   }
 
-  Future<bool> _checkAssetExists(String assetPath, BuildContext context) async {
-    try {
-      await DefaultAssetBundle.of(context).load(assetPath);
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
 }
 
 // Specific logo variants for different use cases
@@ -162,12 +153,20 @@ class LargeHeroLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = MediaQuery.of(context).size.width > 768;
-    final isMobile = MediaQuery.of(context).size.width < 480;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isDesktop = screenWidth > 768;
+    final isMobile = screenWidth < 480;
+    
+    // Make logo responsive to screen size
+    final logoSize = isDesktop 
+        ? (screenWidth * 0.4).clamp(300.0, 600.0)
+        : isMobile 
+            ? (screenWidth * 0.7).clamp(200.0, 350.0)
+            : (screenWidth * 0.5).clamp(250.0, 450.0);
     
     return LogoWidget(
-      width: isDesktop ? 800 : (isMobile ? 400 : 600),
-      height: isDesktop ? 800 : (isMobile ? 400 : 600),
+      width: logoSize,
+      height: logoSize,
       showText: false,
     );
   }
