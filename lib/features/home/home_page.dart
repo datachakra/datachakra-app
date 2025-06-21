@@ -3,13 +3,12 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'widgets/hero_section.dart';
 import 'widgets/curriculum_section.dart';
 import 'widgets/features_section.dart';
-// import 'widgets/testimonials_section.dart';
+import 'widgets/testimonials_section.dart';
 import 'widgets/pricing_section.dart';
 import 'widgets/faq_section.dart';
 import 'widgets/footer_section.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_constants.dart';
-import '../../../core/utils/responsive_utils.dart';
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -76,8 +75,8 @@ class _HomePageState extends State<HomePage> {
                 // Features Section
                 const FeaturesSection(),
                 
-                // Testimonials Section (temporarily disabled)
-                // const TestimonialsSection(),
+                // Testimonials Section
+                const TestimonialsSection(),
                 
                 // Pricing Section
                 const PricingSection(),

@@ -59,13 +59,6 @@ class AppTheme {
           ),
         ),
       ),
-      cardTheme: const CardThemeData(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-        color: AppColors.cardBackground,
-      ),
       textTheme: _buildTextTheme(),
     );
   }

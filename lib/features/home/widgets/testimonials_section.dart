@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/responsive_utils.dart';
@@ -108,21 +106,19 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
   }
 
   Widget _buildTestimonialCarousel(BuildContext context, bool isDesktop) {
-    return CarouselSlider.builder(
-      itemCount: testimonials.length,
-      itemBuilder: (context, index, realIndex) =>
-          _buildTestimonialCard(context, index, isDesktop),
-      options: CarouselOptions(
-        height: isDesktop ? 400 : 350,
-        autoPlay: true,
-        autoPlayInterval: const Duration(seconds: 5),
-        enlargeCenterPage: true,
-        viewportFraction: isDesktop ? 0.8 : 0.9,
-        onPageChanged: (index, reason) {
+    return SizedBox(
+      height: isDesktop ? 400 : 350,
+      child: PageView.builder(
+        itemCount: testimonials.length,
+        onPageChanged: (index) {
           setState(() {
             currentIndex = index;
           });
         },
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: _buildTestimonialCard(context, index, isDesktop),
+        ),
       ),
     );
   }
