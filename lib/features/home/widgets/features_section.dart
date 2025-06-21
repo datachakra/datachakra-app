@@ -67,15 +67,15 @@ class FeaturesSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isDesktop ? 80 : (isMobile ? 20 : 40),
-        vertical: isDesktop ? 120 : (isMobile ? 60 : 80),
+        vertical: isDesktop ? 80 : (isMobile ? 40 : 60),
       ),
-      decoration: const BoxDecoration(
-        color: AppColors.backgroundLight,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
       ),
       child: Column(
         children: [
           _buildSectionHeader(context, isDesktop),
-          SizedBox(height: isDesktop ? 80 : 60),
+          SizedBox(height: isDesktop ? 50 : 40),
           _buildFeaturesGrid(context, isDesktop, isMobile),
         ],
       ),
@@ -115,9 +115,9 @@ class FeaturesSection extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 40,
-          mainAxisSpacing: 40,
-          childAspectRatio: 1.2,
+          crossAxisSpacing: 30,
+          mainAxisSpacing: 30,
+          childAspectRatio: 1.3,
         ),
         itemCount: features.length,
         itemBuilder: (context, index) => _buildFeatureCard(context, index, isDesktop),
@@ -127,7 +127,7 @@ class FeaturesSection extends StatelessWidget {
         children: List.generate(
           features.length,
           (index) => Padding(
-            padding: const EdgeInsets.only(bottom: 24),
+            padding: const EdgeInsets.only(bottom: 20),
             child: _buildFeatureCard(context, index, isDesktop),
           ),
         ),
@@ -140,9 +140,9 @@ class FeaturesSection extends StatelessWidget {
     final color = feature['color'] as Color;
 
     return Container(
-      padding: EdgeInsets.all(isDesktop ? 32 : 24),
+      padding: EdgeInsets.all(isDesktop ? 24 : 20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
         boxShadow: [
           BoxShadow(
@@ -178,7 +178,7 @@ class FeaturesSection extends StatelessWidget {
             ),
           ),
           
-          SizedBox(height: isDesktop ? 24 : 20),
+          SizedBox(height: isDesktop ? 18 : 16),
           
           // Title
           Text(
@@ -188,7 +188,7 @@ class FeaturesSection extends StatelessWidget {
             ),
           ),
           
-          SizedBox(height: isDesktop ? 12 : 8),
+          SizedBox(height: isDesktop ? 10 : 6),
           
           // Description
           Text(
@@ -199,13 +199,13 @@ class FeaturesSection extends StatelessWidget {
             ),
           ),
           
-          SizedBox(height: isDesktop ? 20 : 16),
+          SizedBox(height: isDesktop ? 16 : 12),
           
           // Details
           ...List.generate(
             (feature['details'] as List<String>).length,
             (detailIndex) => Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.only(bottom: 6),
               child: Row(
                 children: [
                   Container(

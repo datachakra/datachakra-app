@@ -63,6 +63,65 @@ class AppTheme {
     );
   }
 
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: AppColors.primaryStart,
+        brightness: Brightness.dark,
+      ),
+      fontFamily: 'Inter',
+      scaffoldBackgroundColor: AppColors.backgroundDark,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        iconTheme: IconThemeData(color: AppColors.textOnDark),
+        titleTextStyle: TextStyle(
+          color: AppColors.textOnDark,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+          fontFamily: 'Inter',
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingL,
+            vertical: AppConstants.spacingM,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConstants.radiusL),
+          ),
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+            fontFamily: 'Inter',
+          ),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppConstants.spacingL,
+            vertical: AppConstants.spacingM,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConstants.radiusL),
+          ),
+          side: const BorderSide(color: AppColors.primaryStart, width: 2),
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 16,
+            fontFamily: 'Inter',
+          ),
+        ),
+      ),
+      textTheme: _buildDarkTextTheme(),
+    );
+  }
+
   static TextTheme _buildTextTheme() {
     return const TextTheme(
       // Headings
@@ -154,6 +213,102 @@ class AppTheme {
         fontSize: 12,
         fontWeight: FontWeight.w500,
         color: AppColors.textSecondary,
+        letterSpacing: 0.1,
+      ),
+    );
+  }
+
+  static TextTheme _buildDarkTextTheme() {
+    return const TextTheme(
+      // Headings
+      displayLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 56,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textOnDark,
+        height: 1.2,
+        letterSpacing: -0.5,
+      ),
+      displayMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 48,
+        fontWeight: FontWeight.w700,
+        color: AppColors.textOnDark,
+        height: 1.2,
+        letterSpacing: -0.5,
+      ),
+      displaySmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 40,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textOnDark,
+        height: 1.2,
+      ),
+      headlineLarge: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 32,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textOnDark,
+        height: 1.3,
+      ),
+      headlineMedium: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 28,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textOnDark,
+        height: 1.3,
+      ),
+      headlineSmall: TextStyle(
+        fontFamily: 'Poppins',
+        fontSize: 24,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textOnDark,
+        height: 1.3,
+      ),
+      
+      // Body text
+      bodyLarge: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 18,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textOnDark,
+        height: 1.6,
+      ),
+      bodyMedium: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppColors.textOnDark,
+        height: 1.6,
+      ),
+      bodySmall: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFFBBBBBB),
+        height: 1.5,
+      ),
+      
+      // Labels
+      labelLarge: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppColors.textOnDark,
+        letterSpacing: 0.1,
+      ),
+      labelMedium: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: AppColors.textOnDark,
+        letterSpacing: 0.1,
+      ),
+      labelSmall: TextStyle(
+        fontFamily: 'Inter',
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFFBBBBBB),
         letterSpacing: 0.1,
       ),
     );

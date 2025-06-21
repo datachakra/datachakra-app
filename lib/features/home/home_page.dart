@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'widgets/hero_section.dart';
 import 'widgets/curriculum_section.dart';
 import 'widgets/features_section.dart';
@@ -9,15 +10,16 @@ import 'widgets/faq_section.dart';
 import 'widgets/footer_section.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_constants.dart';
+import '../../core/providers/theme_provider.dart';
 import '../../core/widgets/logo_widget.dart';
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   final ScrollController _scrollController = ScrollController();
   bool _showBackToTop = false;
 
@@ -118,10 +120,10 @@ class _HomePageState extends State<HomePage> {
       height: 80,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
+        color: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.95),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Theme.of(context).shadowColor.withOpacity(0.1),
             blurRadius: 10,
             offset: const Offset(0, 2),
           ),
@@ -145,6 +147,10 @@ class _HomePageState extends State<HomePage> {
             _buildNavLink(context, 'FAQ', () => _scrollToSection(5)),
             const SizedBox(width: 32),
           ],
+          
+          // Dark Mode Toggle
+          _buildDarkModeToggle(context),
+          const SizedBox(width: 16),
           
           // CTA Buttons
           Row(
@@ -198,6 +204,40 @@ class _HomePageState extends State<HomePage> {
           color: AppColors.textSecondary,
           fontWeight: FontWeight.w500,
         ),
+      ),
+    );
+  }
+
+  Widget _buildDarkModeToggle(BuildContext context) {
+    final isDarkMode = ref.watch(themeProvider);
+    
+    return Container(
+      width: 40,
+      height: 40,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.outline.withOpacity(0.2),
+          width: 1,
+        ),
+      ),
+      child: IconButton(
+        onPressed: () {
+          ref.read(themeProvider.notifier).toggleTheme();
+        },
+        icon: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child: Icon(
+            isDarkMode ? Icons.light_mode : Icons.dark_mode,
+            key: ValueKey(isDarkMode),
+            color: isDarkMode ? Colors.amber : AppColors.textSecondary,
+            size: 20,
+          ),
+        ),
+        padding: EdgeInsets.zero,
+        constraints: const BoxConstraints(),
+        tooltip: isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
       ),
     );
   }
