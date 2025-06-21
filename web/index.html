@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="UTF-8">
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+    <meta name="description" content="DataChakra - Master AI/ML from Foundations to Enlightenment. The complete 7-chakra learning path that transforms you from beginner to AI expert. Join 10,000+ learners.">
+    <meta name="keywords" content="AI learning, machine learning, data science, artificial intelligence course, ML training, AI education, data science bootcamp, python programming, deep learning">
+    <meta name="author" content="DataChakra">
+    
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>DataChakra - AI/ML Mastery Platform | Learn AI from Foundations to Enlightenment</title>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://datachakra.com">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="DataChakra - AI/ML Mastery Platform">
+    <meta property="og:description" content="Master AI/ML from Foundations to Enlightenment. The complete 7-chakra learning path that transforms you from beginner to AI expert.">
+    <meta property="og:image" content="https://datachakra.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://datachakra.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="DataChakra">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DataChakra - AI/ML Mastery Platform">
+    <meta name="twitter:description" content="Master AI/ML from Foundations to Enlightenment. The complete 7-chakra learning path that transforms you from beginner to AI expert.">
+    <meta name="twitter:image" content="https://datachakra.com/assets/images/twitter-card.jpg">
+    <meta name="twitter:site" content="@datachakra">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="assets/fonts/Inter-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Poppins-Bold.ttf" as="font" type="font/ttf" crossorigin>
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F8FAFF 0%, #F0F4FF 50%, #E8F2FF 100%);
+            min-height: 100vh;
+        }
+        
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        
+        .loading-chakra {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-chakra::before {
+            content: '✨';
+            font-size: 32px;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            margin-top: 24px;
+            font-size: 18px;
+            color: #2C3E50;
+            font-weight: 600;
+        }
+        
+        .loading-subtext {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #7F8C8D;
+        }
+    </style>
+    
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "DataChakra",
+        "description": "AI/ML mastery platform offering structured learning paths from foundations to advanced AI",
+        "url": "https://datachakra.com",
+        "logo": "https://datachakra.com/assets/images/logo.png",
+        "foundingDate": "2024",
+        "founders": [{
+            "@type": "Person",
+            "name": "DataChakra Team"
+        }],
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "US"
+        },
+        "sameAs": [
+            "https://twitter.com/datachakra",
+            "https://linkedin.com/company/datachakra",
+            "https://github.com/datachakra"
+        ],
+        "offers": [{
+            "@type": "Offer",
+            "name": "Pro Tier",
+            "price": "29",
+            "priceCurrency": "USD",
+            "description": "Complete AI/ML learning path with mentorship"
+        }]
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-container">
+        <div class="loading-chakra"></div>
+        <div class="loading-text">DataChakra</div>
+        <div class="loading-subtext">Loading your AI/ML journey...</div>
+    </div>
+    
+    <!-- Flutter App Container -->
+    <div id="app"></div>
+    
+    <!-- Flutter Web Bootstrap -->
+    <script>
+        window.addEventListener('flutter-first-frame', function () {
+            const loadingScreen = document.getElementById('loading-screen');
+            if (loadingScreen) {
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.transition = 'opacity 0.5s ease-out';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }
+        });
+    </script>
+    
+    <script src="main.dart.js" type="application/javascript"></script>
+</body>
+</html>

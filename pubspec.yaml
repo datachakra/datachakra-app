@@ -1,0 +1,62 @@
+name: datachakra_landing
+description: DataChakra - AI/ML Mastery Platform Landing Page
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+  # UI & Animations
+  flutter_animate: ^4.2.0+1
+  lottie: ^2.7.0
+  # carousel_slider: ^4.2.1
+  smooth_page_indicator: ^1.1.0
+  
+  # Navigation
+  go_router: ^12.1.3
+  
+  # Responsive Design
+  flutter_screenutil: ^5.9.0
+  
+  # Web Specific
+  url_launcher: ^6.2.1
+  flutter_svg: ^2.0.9
+  
+  # Forms
+  flutter_form_builder: ^9.1.1
+  
+  # Performance
+  cached_network_image: ^3.3.0
+  
+  # State Management
+  flutter_riverpod: ^2.4.9
+  
+  # Icons
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/images/
+    - assets/animations/
+    - assets/icons/
+    
+  # fonts:
+    # - family: Inter
+    #   fonts:
+    #     - asset: assets/fonts/Inter-Regular.ttf
+    # - family: Poppins
+    #   fonts:
+    #     - asset: assets/fonts/Poppins-Regular.ttf
