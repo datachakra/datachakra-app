@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
-import '../../../core/utils/responsive_utils.dart';import '../../../shared/widgets/animated_chakra.dart';
+import '../../../core/utils/responsive_utils.dart';
+import '../../../shared/widgets/animated_chakra.dart';
 
 class CurriculumSection extends StatefulWidget {
   const CurriculumSection({super.key});
@@ -185,10 +187,13 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    chakra['name'],
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: isSelected ? color : AppColors.textPrimary,
-                      fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                    '${chakra['name']} - ${chakra['meaning']}',
+                    style: GoogleFonts.cinzel(
+                      textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: isSelected ? color : AppColors.textPrimary,
+                        fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                        fontSize: isSelected ? 16 : 14,
+                      ),
                     ),
                   ),
                   Text(
@@ -247,9 +252,12 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      chakra['name'],
-                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: color,
+                      '${chakra['name']} - ${chakra['meaning']}',
+                      style: GoogleFonts.cinzel(
+                        textStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          color: color,
+                          fontSize: isDesktop ? 24 : 20,
+                        ),
                       ),
                     ),
                     Text(

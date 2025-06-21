@@ -19,7 +19,7 @@ class HeroSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isDesktop ? 80 : (isMobile ? 20 : 40),
-        vertical: isDesktop ? 120 : (isMobile ? 60 : 80),
+        vertical: isDesktop ? 40 : (isMobile ? 20 : 30),
       ),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -58,7 +58,7 @@ class HeroSection extends StatelessWidget {
     return Column(
       children: [
         _buildContent(context, isDesktop: false),
-        const SizedBox(height: 60),
+        const SizedBox(height: 32),
         _buildChakraVisualization(context),
       ],
     );
@@ -75,7 +75,7 @@ class HeroSection extends StatelessWidget {
               curve: Curves.easeOut,
             ),
         
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
         
         Text(
           AppConstants.heroTitle,
@@ -93,7 +93,7 @@ class HeroSection extends StatelessWidget {
               curve: Curves.easeOut,
             ),
         
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
         
         Text(
           AppConstants.heroSubtitle,
@@ -112,7 +112,7 @@ class HeroSection extends StatelessWidget {
               curve: Curves.easeOut,
             ),
         
-        const SizedBox(height: 40),
+        const SizedBox(height: 24),
         
         _buildCTAButtons(context, isDesktop: isDesktop)
             .animate()
@@ -218,11 +218,11 @@ class HeroSection extends StatelessWidget {
     final isMobile = ResponsiveUtils.isMobile(context);
     
     return SizedBox(
-      height: isDesktop ? 900 : (isMobile ? 500 : 700),
+      height: isDesktop ? 600 : (isMobile ? 350 : 450),
       child: Center(
         child: Container(
-          width: isDesktop ? 850 : (isMobile ? 450 : 650),
-          height: isDesktop ? 850 : (isMobile ? 450 : 650),
+          width: isDesktop ? 600 : (isMobile ? 350 : 450),
+          height: isDesktop ? 600 : (isMobile ? 350 : 450),
           child: const Center(
             child: LargeHeroLogo(),
           ),
