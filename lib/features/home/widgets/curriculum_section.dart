@@ -239,9 +239,25 @@ class _CurriculumSectionState extends State<CurriculumSection> {
           // Header
           Row(
             children: [
-              AnimatedChakra(
-                color: color,
-                size: isDesktop ? 80 : 60,
+              Container(
+                width: isDesktop ? 80 : 60,
+                height: isDesktop ? 80 : 60,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: color.withOpacity(0.1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: color.withOpacity(0.3),
+                      blurRadius: 20,
+                      spreadRadius: 5,
+                    ),
+                  ],
+                ),
+                child: MeditatingHuman(
+                  activeChakraCount: selectedChakraIndex + 1,
+                  isSelected: true,
+                  size: isDesktop ? 60 : 45,
+                ),
               ),
               const SizedBox(width: 20),
               Expanded(
