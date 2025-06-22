@@ -83,7 +83,7 @@ class HeroSection extends StatelessWidget {
         
         const SizedBox(height: 16),
         
-        // DataChakra brand tagline
+        // DataChakra brand tagline - v2.0
         Text(
           'DataChakra',
           style: Theme.of(context).textTheme.displayMedium?.copyWith(
