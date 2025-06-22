@@ -83,46 +83,6 @@ class HeroSection extends StatelessWidget {
         
         const SizedBox(height: 16),
         
-        // DataChakra brand tagline - v2.0
-        Text(
-          'DataChakra',
-          style: Theme.of(context).textTheme.displayMedium?.copyWith(
-            fontSize: isDesktop ? 48 : 36,
-            fontWeight: FontWeight.w800,
-            color: Theme.of(context).textTheme.displayMedium?.color,
-            height: 1.2,
-          ),
-        )
-            .animate()
-            .fadeIn(duration: 800.ms, delay: 100.ms)
-            .slideY(
-              begin: 0.3,
-              end: 0,
-              duration: 800.ms,
-              curve: Curves.easeOut,
-            ),
-        
-        Text(
-          'Ancient Wisdom Modern Technology',
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            fontSize: isDesktop ? 18 : 16,
-            fontWeight: FontWeight.w500,
-            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
-            height: 1.4,
-            letterSpacing: 0.5,
-          ),
-        )
-            .animate()
-            .fadeIn(duration: 800.ms, delay: 150.ms)
-            .slideY(
-              begin: 0.3,
-              end: 0,
-              duration: 800.ms,
-              curve: Curves.easeOut,
-            ),
-        
-        const SizedBox(height: 24),
-        
         Text(
           AppConstants.heroTitle,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
@@ -266,12 +226,44 @@ class HeroSection extends StatelessWidget {
     return SizedBox(
       height: isDesktop ? 600 : (isMobile ? 350 : 450),
       child: Center(
-        child: SizedBox(
-          width: isDesktop ? 600 : (isMobile ? 350 : 450),
-          height: isDesktop ? 600 : (isMobile ? 350 : 450),
-          child: const Center(
-            child: LargeHeroLogo(),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: isDesktop ? 600 : (isMobile ? 350 : 450),
+              height: isDesktop ? 450 : (isMobile ? 250 : 350),
+              child: const Center(
+                child: LargeHeroLogo(),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Column(
+              children: [
+                Text(
+                  'DataChakra',
+                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                    fontSize: isDesktop ? 48 : (isMobile ? 32 : 40),
+                    fontWeight: FontWeight.w800,
+                    color: Theme.of(context).textTheme.displayMedium?.color,
+                    height: 1.2,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Ancient Wisdom Modern Technology',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontSize: isDesktop ? 18 : (isMobile ? 14 : 16),
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
+                    height: 1.4,
+                    letterSpacing: 0.5,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ],
         )
             .animate()
             .fadeIn(duration: 1200.ms, delay: 600.ms)
