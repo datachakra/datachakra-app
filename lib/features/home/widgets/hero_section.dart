@@ -224,14 +224,14 @@ class HeroSection extends StatelessWidget {
     final isMobile = ResponsiveUtils.isMobile(context);
     
     return SizedBox(
-      height: isDesktop ? 600 : (isMobile ? 350 : 450),
+      height: isDesktop ? 700 : (isMobile ? 450 : 550),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: isDesktop ? 600 : (isMobile ? 350 : 450),
-              height: isDesktop ? 450 : (isMobile ? 250 : 350),
+              width: isDesktop ? 400 : (isMobile ? 250 : 300),
+              height: isDesktop ? 400 : (isMobile ? 250 : 300),
               child: const Center(
                 child: LargeHeroLogo(),
               ),
