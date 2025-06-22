@@ -132,7 +132,10 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Row(
         children: [
           // Logo
-          const HeaderLogo(),
+          GestureDetector(
+            onTap: _scrollToTop,
+            child: const HeaderLogo(),
+          ),
           
           const Spacer(),
           

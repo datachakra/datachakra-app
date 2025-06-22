@@ -158,7 +158,7 @@ class HeroSection extends StatelessWidget {
     return SizedBox(
       height: isDesktop ? 600 : (isMobile ? 400 : 500),
       child: Padding(
-        padding: EdgeInsets.only(left: isDesktop ? 10 : 0, right: isDesktop ? 140 : 0),
+        padding: EdgeInsets.only(left: isDesktop ? 10 : 0, right: isDesktop ? 160 : 0),
         child: Center(
           child: isDesktop 
             ? Row(

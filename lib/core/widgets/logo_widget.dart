@@ -125,10 +125,10 @@ class HeaderLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const LogoWidget(
-      width: 40,
-      height: 40,
+      width: 50,
+      height: 50,
       showText: true, // Show DataChakra text beside logo - v2.2
-      textSize: 18,
+      textSize: 20,
     );
   }
 }
