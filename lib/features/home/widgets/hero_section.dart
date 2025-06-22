@@ -231,10 +231,10 @@ class HeroSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 400,
                   height: 400,
-                  child: const Center(
+                  child: Center(
                     child: LargeHeroLogo(),
                   ),
                 ),
@@ -305,8 +305,7 @@ class HeroSection extends StatelessWidget {
                   ],
                 ),
               ],
-            ),
-        )
+            )
             .animate()
             .fadeIn(duration: 1200.ms, delay: 600.ms)
             .scale(
