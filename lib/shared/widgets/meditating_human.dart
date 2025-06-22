@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../core/constants/app_constants.dart';
 
@@ -19,7 +20,7 @@ class MeditatingHuman extends StatelessWidget {
       width: size,
       height: size,
       child: CustomPaint(
-        painter: MeditatingHumanPainter(
+        painter: ChakraHelixPainter(
           activeChakraCount: activeChakraCount,
           isSelected: isSelected,
         ),
@@ -28,11 +29,11 @@ class MeditatingHuman extends StatelessWidget {
   }
 }
 
-class MeditatingHumanPainter extends CustomPainter {
+class ChakraHelixPainter extends CustomPainter {
   final int activeChakraCount;
   final bool isSelected;
 
-  MeditatingHumanPainter({
+  ChakraHelixPainter({
     required this.activeChakraCount,
     required this.isSelected,
   });
@@ -41,137 +42,140 @@ class MeditatingHumanPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
 
-    // Draw clean outline meditation figure
-    _drawOutlineMeditator(canvas, center, size);
+    // Draw DNA helix structure with chakra progression
+    _drawHelixStructure(canvas, center, size);
 
-    // Draw small chakra dots
-    _drawChakraDots(canvas, center, size);
+    // Draw chakra nodes on the helix
+    _drawChakraNodes(canvas, center, size);
   }
 
-  void _drawOutlineMeditator(Canvas canvas, Offset center, Size size) {
-    final strokeWidth = size.width * 0.04;
+  void _drawHelixStructure(Canvas canvas, Offset center, Size size) {
+    final helixHeight = size.height * 0.8;
+    final helixWidth = size.width * 0.4;
     
-    // Paint for clean outlines
-    final outlinePaint = Paint()
+    // Paint for helix strands
+    final helixPaint = Paint()
       ..color = isSelected 
-          ? const Color(0xFF4A5568) 
-          : const Color(0xFF9CA3AF)
+          ? const Color(0xFF667EEA).withOpacity(0.6)
+          : const Color(0xFF9CA3AF).withOpacity(0.4)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round
-      ..strokeJoin = StrokeJoin.round;
+      ..strokeWidth = size.width * 0.025
+      ..strokeCap = StrokeCap.round;
 
-    // Head - clean circle
-    final headRadius = size.width * 0.15;
-    final headCenter = Offset(center.dx, center.dy - size.height * 0.25);
-    canvas.drawCircle(headCenter, headRadius, outlinePaint);
+    // Draw left helix strand
+    final leftHelixPath = Path();
+    final rightHelixPath = Path();
+    
+    final numPoints = 50;
+    for (int i = 0; i <= numPoints; i++) {
+      final t = i / numPoints;
+      final y = center.dy - helixHeight / 2 + t * helixHeight;
+      final angle = t * 4 * 3.14159; // 2 full turns
+      
+      final leftX = center.dx + helixWidth * 0.5 * math.cos(angle);
+      final rightX = center.dx + helixWidth * 0.5 * math.cos(angle + 3.14159);
+      
+      if (i == 0) {
+        leftHelixPath.moveTo(leftX, y);
+        rightHelixPath.moveTo(rightX, y);
+      } else {
+        leftHelixPath.lineTo(leftX, y);
+        rightHelixPath.lineTo(rightX, y);
+      }
+    }
+    
+    canvas.drawPath(leftHelixPath, helixPaint);
+    canvas.drawPath(rightHelixPath, helixPaint);
 
-    // Torso - simple vertical line with slight curve
-    final torsoTop = Offset(center.dx, headCenter.dy + headRadius);
-    final torsoBottom = Offset(center.dx, center.dy + size.height * 0.05);
-    canvas.drawLine(torsoTop, torsoBottom, outlinePaint);
+    // Draw connecting bridges (base pairs)
+    final bridgePaint = Paint()
+      ..color = isSelected 
+          ? const Color(0xFF667EEA).withOpacity(0.3)
+          : const Color(0xFF9CA3AF).withOpacity(0.2)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = size.width * 0.015
+      ..strokeCap = StrokeCap.round;
 
-    // Arms in meditation pose - clean curved lines
-    final shoulderY = center.dy - size.height * 0.1;
-    final armLength = size.width * 0.25;
-    
-    // Left arm
-    final leftShoulder = Offset(center.dx - size.width * 0.08, shoulderY);
-    final leftElbow = Offset(center.dx - armLength, shoulderY + size.height * 0.08);
-    final leftHand = Offset(center.dx - size.width * 0.1, center.dy);
-    
-    final leftArmPath = Path();
-    leftArmPath.moveTo(leftShoulder.dx, leftShoulder.dy);
-    leftArmPath.quadraticBezierTo(leftElbow.dx, leftElbow.dy, leftHand.dx, leftHand.dy);
-    canvas.drawPath(leftArmPath, outlinePaint);
-
-    // Right arm
-    final rightShoulder = Offset(center.dx + size.width * 0.08, shoulderY);
-    final rightElbow = Offset(center.dx + armLength, shoulderY + size.height * 0.08);
-    final rightHand = Offset(center.dx + size.width * 0.1, center.dy);
-    
-    final rightArmPath = Path();
-    rightArmPath.moveTo(rightShoulder.dx, rightShoulder.dy);
-    rightArmPath.quadraticBezierTo(rightElbow.dx, rightElbow.dy, rightHand.dx, rightHand.dy);
-    canvas.drawPath(rightArmPath, outlinePaint);
-
-    // Legs in cross-legged position - clean curved lines
-    final hipY = center.dy + size.height * 0.05;
-    final legLength = size.width * 0.28;
-    
-    // Left leg
-    final leftHip = Offset(center.dx - size.width * 0.05, hipY);
-    final leftKnee = Offset(center.dx - legLength, hipY + size.height * 0.1);
-    final leftFoot = Offset(center.dx + size.width * 0.15, hipY + size.height * 0.2);
-    
-    final leftLegPath = Path();
-    leftLegPath.moveTo(leftHip.dx, leftHip.dy);
-    leftLegPath.quadraticBezierTo(leftKnee.dx, leftKnee.dy, leftFoot.dx, leftFoot.dy);
-    canvas.drawPath(leftLegPath, outlinePaint);
-
-    // Right leg
-    final rightHip = Offset(center.dx + size.width * 0.05, hipY);
-    final rightKnee = Offset(center.dx + legLength, hipY + size.height * 0.1);
-    final rightFoot = Offset(center.dx - size.width * 0.15, hipY + size.height * 0.2);
-    
-    final rightLegPath = Path();
-    rightLegPath.moveTo(rightHip.dx, rightHip.dy);
-    rightLegPath.quadraticBezierTo(rightKnee.dx, rightKnee.dy, rightFoot.dx, rightFoot.dy);
-    canvas.drawPath(rightLegPath, outlinePaint);
+    // Draw 7 bridge connections where chakras will be
+    for (int i = 0; i < 7; i++) {
+      final t = (i + 0.5) / 7;
+      final y = center.dy - helixHeight / 2 + t * helixHeight;
+      final angle = t * 4 * 3.14159;
+      
+      final leftX = center.dx + helixWidth * 0.5 * math.cos(angle);
+      final rightX = center.dx + helixWidth * 0.5 * math.cos(angle + 3.14159);
+      
+      canvas.drawLine(Offset(leftX, y), Offset(rightX, y), bridgePaint);
+    }
   }
 
-  void _drawChakraDots(Canvas canvas, Offset center, Size size) {
-    // Small chakra positions along the body centerline
-    final chakraPositions = [
-      Offset(center.dx, center.dy - size.height * 0.23), // Crown - top of head
-      Offset(center.dx, center.dy - size.height * 0.18), // Third Eye - forehead
-      Offset(center.dx, center.dy - size.height * 0.12), // Throat
-      Offset(center.dx, center.dy - size.height * 0.05), // Heart
-      Offset(center.dx, center.dy + size.height * 0.02), // Solar Plexus
-      Offset(center.dx, center.dy + size.height * 0.08), // Sacral
-      Offset(center.dx, center.dy + size.height * 0.14), // Root
-    ];
-
-    final chakraColors = [
-      Color(AppConstants.chakrasData[6]['color']), // Crown
-      Color(AppConstants.chakrasData[5]['color']), // Third Eye
-      Color(AppConstants.chakrasData[4]['color']), // Throat
-      Color(AppConstants.chakrasData[3]['color']), // Heart
-      Color(AppConstants.chakrasData[2]['color']), // Solar Plexus
-      Color(AppConstants.chakrasData[1]['color']), // Sacral
-      Color(AppConstants.chakrasData[0]['color']), // Root
-    ];
-
-    // Small dots
-    final dotRadius = size.width * 0.035; // Small dots
+  void _drawChakraNodes(Canvas canvas, Offset center, Size size) {
+    final helixHeight = size.height * 0.8;
+    final helixWidth = size.width * 0.4;
     
+    final chakraColors = [
+      Color(AppConstants.chakrasData[0]['color']), // Root
+      Color(AppConstants.chakrasData[1]['color']), // Sacral
+      Color(AppConstants.chakrasData[2]['color']), // Solar Plexus
+      Color(AppConstants.chakrasData[3]['color']), // Heart
+      Color(AppConstants.chakrasData[4]['color']), // Throat
+      Color(AppConstants.chakrasData[5]['color']), // Third Eye
+      Color(AppConstants.chakrasData[6]['color']), // Crown
+    ];
+
+    final nodeRadius = size.width * 0.06;
+    
+    // Draw chakra nodes from bottom to top (Root to Crown)
     for (int i = 0; i < 7; i++) {
+      final t = (i + 0.5) / 7;
+      final y = center.dy + helixHeight / 2 - t * helixHeight; // Bottom to top
+      final angle = t * 4 * 3.14159;
+      
+      // Position nodes at the center of the helix bridges
+      final nodeX = center.dx;
+      final nodePosition = Offset(nodeX, y);
+      
       if (i < activeChakraCount) {
-        // Active chakra - small bright dot
+        // Active chakra - bright glowing node
+        final glowPaint = Paint()
+          ..color = chakraColors[i].withOpacity(0.4)
+          ..style = PaintingStyle.fill;
+        
         final chakraPaint = Paint()
           ..color = chakraColors[i]
           ..style = PaintingStyle.fill;
 
-        canvas.drawCircle(chakraPositions[i], dotRadius, chakraPaint);
+        // Glow effect
+        canvas.drawCircle(nodePosition, nodeRadius + 2, glowPaint);
+        canvas.drawCircle(nodePosition, nodeRadius, chakraPaint);
 
-        // Tiny inner light
+        // Inner light
         final innerPaint = Paint()
-          ..color = Colors.white.withOpacity(0.8)
+          ..color = Colors.white.withOpacity(0.9)
           ..style = PaintingStyle.fill;
-        canvas.drawCircle(chakraPositions[i], dotRadius * 0.4, innerPaint);
+        canvas.drawCircle(nodePosition, nodeRadius * 0.4, innerPaint);
+
+        // Pulse effect for selected
+        if (isSelected) {
+          final pulsePaint = Paint()
+            ..color = chakraColors[i].withOpacity(0.2)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2;
+          canvas.drawCircle(nodePosition, nodeRadius + 4, pulsePaint);
+        }
       } else {
-        // Inactive chakra - very subtle outline
+        // Inactive chakra - dim node
         final dimPaint = Paint()
           ..color = Colors.grey[400]!.withOpacity(0.3)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 0.5;
-        canvas.drawCircle(chakraPositions[i], dotRadius * 0.7, dimPaint);
+          ..strokeWidth = 1;
+        canvas.drawCircle(nodePosition, nodeRadius * 0.6, dimPaint);
       }
     }
   }
 
   @override
-  bool shouldRepaint(covariant MeditatingHumanPainter oldDelegate) {
+  bool shouldRepaint(covariant ChakraHelixPainter oldDelegate) {
     return oldDelegate.activeChakraCount != activeChakraCount ||
            oldDelegate.isSelected != isSelected;
   }

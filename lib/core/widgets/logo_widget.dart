@@ -44,13 +44,27 @@ class LogoWidget extends StatelessWidget {
   }
 
   Widget _buildText(BuildContext context) {
-    return Text(
-      'DataChakra',
-      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-        fontWeight: FontWeight.bold,
-        color: textColor ?? AppColors.textPrimary,
-        fontSize: textSize,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          'DataChakra',
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            fontWeight: FontWeight.bold,
+            color: textColor ?? Theme.of(context).textTheme.headlineSmall?.color,
+            fontSize: textSize,
+          ),
+        ),
+        Text(
+          'Ancient Wisdom Modern Technology',
+          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            color: (textColor ?? Theme.of(context).textTheme.bodySmall?.color)?.withOpacity(0.7),
+            fontSize: (textSize ?? 12) * 0.6,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -110,10 +124,12 @@ class HeaderLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LogoWidget(
+    return LogoWidget(
       width: 40,
       height: 40,
       showText: true,
+      textColor: Theme.of(context).textTheme.headlineSmall?.color,
+      textSize: 18,
     );
   }
 }
@@ -143,7 +159,7 @@ class FooterLogo extends StatelessWidget {
       height: 32,
       showText: true,
       textColor: Colors.white,
-      textSize: 18,
+      textSize: 16,
     );
   }
 }
