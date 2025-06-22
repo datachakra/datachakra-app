@@ -317,7 +317,7 @@ class FooterSection extends StatelessWidget {
                     color: Colors.white.withOpacity(0.7),
                   ),
                 ),
-                Icon(
+                const Icon(
                   Icons.favorite,
                   color: AppColors.rootChakra,
                   size: 16,

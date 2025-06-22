@@ -160,7 +160,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   onPressed: () => _launchURL(AppConstants.loginUrl),
                   child: Text(
                     'Sign In',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.primaryStart,
                       fontWeight: FontWeight.w600,
                     ),

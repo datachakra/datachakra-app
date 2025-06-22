@@ -99,8 +99,9 @@ class _CurriculumSectionState extends State<CurriculumSection> {
 
   Widget _buildChakraTimeline(BuildContext context) {
     final isDesktop = ResponsiveUtils.isDesktop(context);
+    final isMobile = ResponsiveUtils.isMobile(context);
     
-    return Container(
+    return SizedBox(
       height: isDesktop ? 600 : 400,
       child: Stack(
         children: [

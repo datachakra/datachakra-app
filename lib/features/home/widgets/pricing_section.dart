@@ -269,7 +269,7 @@ class _PricingSectionState extends State<PricingSection> {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.check_circle,
                       color: AppColors.success,
                       size: 20,
@@ -333,7 +333,7 @@ class _PricingSectionState extends State<PricingSection> {
           Container(
             width: isDesktop ? 80 : 60,
             height: isDesktop ? 80 : 60,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.success,
               shape: BoxShape.circle,
             ),

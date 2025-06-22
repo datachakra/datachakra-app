@@ -226,7 +226,7 @@ class HeroSection extends StatelessWidget {
     return SizedBox(
       height: isDesktop ? 600 : (isMobile ? 350 : 450),
       child: Center(
-        child: Container(
+        child: SizedBox(
           width: isDesktop ? 600 : (isMobile ? 350 : 450),
           height: isDesktop ? 600 : (isMobile ? 350 : 450),
           child: const Center(
