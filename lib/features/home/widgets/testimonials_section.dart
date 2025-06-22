@@ -95,7 +95,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
         Text(
           'Real transformations from our DataChakra community',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: AppColors.textSecondary,
+            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.7),
           ),
         )
             .animate()
@@ -131,7 +131,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
       margin: const EdgeInsets.symmetric(horizontal: 8),
       padding: EdgeInsets.all(isDesktop ? 40 : 24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
         boxShadow: [
           BoxShadow(

@@ -86,7 +86,7 @@ class _FAQSectionState extends State<FAQSection> {
         Text(
           'Everything you need to know about starting your AI/ML journey',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: AppColors.textSecondary,
+            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.7),
           ),
         )
             .animate()
@@ -116,7 +116,7 @@ class _FAQSectionState extends State<FAQSection> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
         boxShadow: [
           BoxShadow(
@@ -199,7 +199,6 @@ class _FAQSectionState extends State<FAQSection> {
                   child: Text(
                     faq['answer']!,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textSecondary,
                       height: 1.6,
                     ),
                   ),

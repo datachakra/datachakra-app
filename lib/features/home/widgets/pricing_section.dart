@@ -27,8 +27,8 @@ class _PricingSectionState extends State<PricingSection> {
         horizontal: isDesktop ? 80 : (isMobile ? 20 : 40),
         vertical: isDesktop ? 120 : (isMobile ? 60 : 80),
       ),
-      decoration: const BoxDecoration(
-        color: AppColors.backgroundLight,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
       ),
       child: Column(
         children: [
@@ -60,7 +60,7 @@ class _PricingSectionState extends State<PricingSection> {
         Text(
           'Start free, upgrade when you\'re ready to accelerate your AI/ML journey',
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-            color: AppColors.textSecondary,
+            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.7),
           ),
         )
             .animate()
@@ -185,11 +185,11 @@ class _PricingSectionState extends State<PricingSection> {
     return Container(
       padding: const EdgeInsets.all(32),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
         border: isPopular
             ? Border.all(color: color, width: 2)
-            : Border.all(color: Colors.grey[200]!, width: 1),
+            : Border.all(color: Theme.of(context).dividerColor.withOpacity(0.3), width: 1),
         boxShadow: [
           BoxShadow(
             color: isPopular

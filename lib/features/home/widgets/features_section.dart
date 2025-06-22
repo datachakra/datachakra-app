@@ -115,9 +115,9 @@ class FeaturesSection extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          crossAxisSpacing: 30,
-          mainAxisSpacing: 30,
-          childAspectRatio: 1.3,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          childAspectRatio: 1.4,
         ),
         itemCount: features.length,
         itemBuilder: (context, index) => _buildFeatureCard(context, index, isDesktop),
@@ -127,7 +127,7 @@ class FeaturesSection extends StatelessWidget {
         children: List.generate(
           features.length,
           (index) => Padding(
-            padding: const EdgeInsets.only(bottom: 20),
+            padding: const EdgeInsets.only(bottom: 16),
             child: _buildFeatureCard(context, index, isDesktop),
           ),
         ),
@@ -140,7 +140,7 @@ class FeaturesSection extends StatelessWidget {
     final color = feature['color'] as Color;
 
     return Container(
-      padding: EdgeInsets.all(isDesktop ? 24 : 20),
+      padding: EdgeInsets.all(isDesktop ? 20 : 16),
       decoration: BoxDecoration(
         color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
@@ -178,7 +178,7 @@ class FeaturesSection extends StatelessWidget {
             ),
           ),
           
-          SizedBox(height: isDesktop ? 18 : 16),
+          SizedBox(height: isDesktop ? 14 : 12),
           
           // Title
           Text(
@@ -188,7 +188,7 @@ class FeaturesSection extends StatelessWidget {
             ),
           ),
           
-          SizedBox(height: isDesktop ? 10 : 6),
+          SizedBox(height: isDesktop ? 8 : 4),
           
           // Description
           Text(
@@ -199,13 +199,13 @@ class FeaturesSection extends StatelessWidget {
             ),
           ),
           
-          SizedBox(height: isDesktop ? 16 : 12),
+          SizedBox(height: isDesktop ? 12 : 8),
           
           // Details
           ...List.generate(
             (feature['details'] as List<String>).length,
             (detailIndex) => Padding(
-              padding: const EdgeInsets.only(bottom: 6),
+              padding: const EdgeInsets.only(bottom: 4),
               child: Row(
                 children: [
                   Container(

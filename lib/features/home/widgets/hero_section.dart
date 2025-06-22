@@ -21,15 +21,21 @@ class HeroSection extends StatelessWidget {
         horizontal: isDesktop ? 80 : (isMobile ? 20 : 40),
         vertical: isDesktop ? 40 : (isMobile ? 20 : 30),
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [
-            Color(0xFFF8FAFF),
-            Color(0xFFF0F4FF),
-            Color(0xFFE8F2FF),
-          ],
+          colors: Theme.of(context).brightness == Brightness.dark
+              ? [
+                  const Color(0xFF1A1A1A),
+                  const Color(0xFF2A2A2A),
+                  const Color(0xFF1F1F1F),
+                ]
+              : [
+                  const Color(0xFFF8FAFF),
+                  const Color(0xFFF0F4FF),
+                  const Color(0xFFE8F2FF),
+                ],
         ),
       ),
       child: isDesktop

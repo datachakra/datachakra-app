@@ -6,6 +6,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/responsive_utils.dart';
 import '../../../shared/widgets/animated_chakra.dart';
+import '../../../shared/widgets/meditating_human.dart';
 
 class CurriculumSection extends StatefulWidget {
   const CurriculumSection({super.key});
@@ -121,7 +122,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
             children: List.generate(
               AppConstants.chakrasData.length,
               (index) => Expanded(
-                child: _buildTimelineItem(context, index, isDesktop),
+                child: _buildTimelineItem(context, index, isDesktop, isMobile),
               ),
             ),
           ),
@@ -130,7 +131,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
     );
   }
 
-  Widget _buildTimelineItem(BuildContext context, int index, bool isDesktop) {
+  Widget _buildTimelineItem(BuildContext context, int index, bool isDesktop, bool isMobile) {
     final chakra = AppConstants.chakrasData[index];
     final isSelected = selectedChakraIndex == index;
     final color = Color(chakra['color']);
@@ -143,38 +144,32 @@ class _CurriculumSectionState extends State<CurriculumSection> {
       },
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: isDesktop ? 80 : 60,
+          horizontal: isDesktop ? 80 : (isMobile ? 40 : 60),
           vertical: 8,
         ),
         child: Row(
           children: [
-            // Chakra circle
-            AnimatedContainer(
-              duration: AppConstants.animationMedium,
+            // Meditating human with progressive chakras
+            Container(
               width: isSelected ? 60 : 40,
               height: isSelected ? 60 : 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: color,
-                boxShadow: isSelected
-                    ? [
+              decoration: isSelected
+                  ? BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: color.withOpacity(0.1),
+                      boxShadow: [
                         BoxShadow(
-                          color: color.withOpacity(0.4),
-                          blurRadius: 20,
-                          spreadRadius: 5,
+                          color: color.withOpacity(0.3),
+                          blurRadius: 15,
+                          spreadRadius: 3,
                         ),
-                      ]
-                    : null,
-              ),
-              child: Center(
-                child: Text(
-                  '${index + 1}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: isSelected ? 20 : 16,
-                  ),
-                ),
+                      ],
+                    )
+                  : null,
+              child: MeditatingHuman(
+                activeChakraCount: index + 1,
+                isSelected: isSelected,
+                size: isSelected ? 45 : 30,
               ),
             ),
             
@@ -187,12 +182,12 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '${chakra['name']} - ${chakra['meaning']}',
+                    chakra['name'],
                     style: GoogleFonts.cinzel(
                       textStyle: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: isSelected ? color : AppColors.textPrimary,
                         fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
-                        fontSize: isSelected ? 16 : 14,
+                        fontSize: isMobile ? (isSelected ? 14 : 12) : (isSelected ? 16 : 14),
                       ),
                     ),
                   ),
@@ -202,6 +197,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                       color: isSelected 
                           ? AppColors.textPrimary 
                           : AppColors.textSecondary,
+                      fontSize: isMobile ? 11 : 12,
                     ),
                   ),
                   // Duration removed to prevent mobile overlap
@@ -225,7 +221,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
     return Container(
       padding: EdgeInsets.all(isDesktop ? 40 : 24),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).cardColor,
         borderRadius: BorderRadius.circular(AppConstants.radiusL),
         boxShadow: [
           BoxShadow(
@@ -252,7 +248,7 @@ class _CurriculumSectionState extends State<CurriculumSection> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${chakra['name']} - ${chakra['meaning']}',
+                      chakra['name'],
                       style: GoogleFonts.cinzel(
                         textStyle: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           color: color,
