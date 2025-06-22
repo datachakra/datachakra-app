@@ -66,7 +66,7 @@ class ChakraHelixPainter extends CustomPainter {
     final leftHelixPath = Path();
     final rightHelixPath = Path();
     
-    final numPoints = 50;
+    const numPoints = 50;
     for (int i = 0; i <= numPoints; i++) {
       final t = i / numPoints;
       final y = center.dy - helixHeight / 2 + t * helixHeight;
@@ -111,7 +111,6 @@ class ChakraHelixPainter extends CustomPainter {
 
   void _drawChakraNodes(Canvas canvas, Offset center, Size size) {
     final helixHeight = size.height * 0.8;
-    final helixWidth = size.width * 0.4;
     
     final chakraColors = [
       Color(AppConstants.chakrasData[0]['color']), // Root
@@ -129,7 +128,6 @@ class ChakraHelixPainter extends CustomPainter {
     for (int i = 0; i < 7; i++) {
       final t = (i + 0.5) / 7;
       final y = center.dy + helixHeight / 2 - t * helixHeight; // Bottom to top
-      final angle = t * 4 * 3.14159;
       
       // Position nodes at the center of the helix bridges
       final nodeX = center.dx;

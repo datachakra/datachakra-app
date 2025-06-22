@@ -158,9 +158,9 @@ class _HomePageState extends ConsumerState<HomePage> {
               if (MediaQuery.of(context).size.width > 480) ...[
                 TextButton(
                   onPressed: () => _launchURL(AppConstants.loginUrl),
-                  child: Text(
+                  child: const Text(
                     'Sign In',
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.primaryStart,
                       fontWeight: FontWeight.w600,
                     ),
