@@ -125,66 +125,6 @@ class HeroSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialProof(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(AppConstants.radiusRound),
-        border: Border.all(
-          color: AppColors.primaryStart.withOpacity(0.2),
-          width: 1,
-        ),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            width: 80,
-            height: 32,
-            child: Stack(
-              children: List.generate(4, (index) {
-                return Positioned(
-                  left: index * 16.0,
-                  child: Container(
-                    width: 32,
-                    height: 32,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppConstants.chakrasData[index % 7]['color'] != null
-                          ? Color(AppConstants.chakrasData[index % 7]['color'])
-                          : AppColors.primaryStart,
-                      border: Border.all(color: Colors.white, width: 2),
-                    ),
-                    child: Center(
-                      child: Text(
-                        String.fromCharCode(65 + index),
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              }),
-            ),
-          ),
-          const SizedBox(width: 12),
-          Text(
-            AppConstants.heroSocialProof,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              color: AppColors.textSecondary,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildCTAButtons(BuildContext context, {required bool isDesktop}) {
     return Wrap(
