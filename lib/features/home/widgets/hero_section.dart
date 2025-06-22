@@ -74,14 +74,6 @@ class HeroSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _buildSocialProof(context).animate().fadeIn(duration: 600.ms).slideY(
-              begin: 0.3,
-              end: 0,
-              duration: 600.ms,
-              curve: Curves.easeOut,
-            ),
-        
-        const SizedBox(height: 16),
         
         Text(
           AppConstants.heroTitle,
