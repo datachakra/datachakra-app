@@ -40,103 +40,93 @@ class MeditatingHumanPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final bodyHeight = size.height * 0.85;
-    final bodyWidth = size.width * 0.4;
 
-    // Paint for the human silhouette
-    final bodyPaint = Paint()
-      ..color = isSelected ? Colors.white : Colors.grey[400]!
+    // Draw triangle-shaped meditating human in Padmasana
+    _drawTriangleMeditator(canvas, center, size);
+
+    // Draw small chakra dots
+    _drawChakraDots(canvas, center, size);
+  }
+
+  void _drawTriangleMeditator(Canvas canvas, Offset center, Size size) {
+    final baseWidth = size.width * 0.7;
+    final height = size.height * 0.85;
+    
+    // Create triangle path for the meditating figure
+    final figurePath = Path();
+    
+    // Head (small circle at top)
+    final headRadius = size.width * 0.12;
+    final headCenter = Offset(center.dx, center.dy - height * 0.35);
+    
+    // Triangle body starting from below head
+    final triangleTop = Offset(center.dx, center.dy - height * 0.2);
+    final triangleLeft = Offset(center.dx - baseWidth * 0.35, center.dy + height * 0.25);
+    final triangleRight = Offset(center.dx + baseWidth * 0.35, center.dy + height * 0.25);
+    
+    // Create smooth triangle path
+    figurePath.moveTo(triangleTop.dx, triangleTop.dy);
+    figurePath.quadraticBezierTo(
+      center.dx - baseWidth * 0.2, center.dy - height * 0.05,
+      triangleLeft.dx, triangleLeft.dy,
+    );
+    figurePath.quadraticBezierTo(
+      center.dx, center.dy + height * 0.35,
+      triangleRight.dx, triangleRight.dy,
+    );
+    figurePath.quadraticBezierTo(
+      center.dx + baseWidth * 0.2, center.dy - height * 0.05,
+      triangleTop.dx, triangleTop.dy,
+    );
+    figurePath.close();
+
+    // Paint for the figure
+    final figurePaint = Paint()
+      ..color = isSelected ? const Color(0xFF4A5568) : const Color(0xFF718096)
       ..style = PaintingStyle.fill;
 
     final outlinePaint = Paint()
-      ..color = isSelected ? Colors.white : Colors.grey[600]!
+      ..color = isSelected ? const Color(0xFF2D3748) : const Color(0xFF4A5568)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
+      ..strokeWidth = 1.5;
 
-    // Draw meditating human silhouette
-    _drawMeditatingHuman(canvas, center, bodyWidth, bodyHeight, bodyPaint, outlinePaint);
-
-    // Draw chakras based on activeChakraCount
-    _drawChakras(canvas, center, bodyHeight);
-  }
-
-  void _drawMeditatingHuman(Canvas canvas, Offset center, double bodyWidth, double bodyHeight, Paint bodyPaint, Paint outlinePaint) {
-    // Head
-    final headRadius = bodyWidth * 0.3;
-    final headCenter = Offset(center.dx, center.dy - bodyHeight * 0.35);
-    canvas.drawCircle(headCenter, headRadius, bodyPaint);
+    // Draw head
+    canvas.drawCircle(headCenter, headRadius, figurePaint);
     canvas.drawCircle(headCenter, headRadius, outlinePaint);
 
-    // Body (torso)
-    final bodyRect = RRect.fromRectAndRadius(
+    // Draw triangle body
+    canvas.drawPath(figurePath, figurePaint);
+    canvas.drawPath(figurePath, outlinePaint);
+
+    // Add small hands in prayer position
+    final handsCenter = Offset(center.dx, center.dy - height * 0.08);
+    final handsPaint = Paint()
+      ..color = isSelected ? const Color(0xFF4A5568) : const Color(0xFF718096)
+      ..style = PaintingStyle.fill;
+    
+    // Small oval for hands
+    canvas.drawOval(
       Rect.fromCenter(
-        center: Offset(center.dx, center.dy),
-        width: bodyWidth,
-        height: bodyHeight * 0.5,
+        center: handsCenter,
+        width: size.width * 0.15,
+        height: size.width * 0.08,
       ),
-      Radius.circular(bodyWidth * 0.2),
-    );
-    canvas.drawRRect(bodyRect, bodyPaint);
-    canvas.drawRRect(bodyRect, outlinePaint);
-
-    // Legs (sitting cross-legged)
-    final legPath = Path();
-    final legY = center.dy + bodyHeight * 0.2;
-    
-    // Left leg
-    legPath.moveTo(center.dx - bodyWidth * 0.1, legY);
-    legPath.quadraticBezierTo(
-      center.dx - bodyWidth * 0.6, legY + bodyHeight * 0.1,
-      center.dx - bodyWidth * 0.4, legY + bodyHeight * 0.25,
-    );
-    
-    // Right leg
-    legPath.moveTo(center.dx + bodyWidth * 0.1, legY);
-    legPath.quadraticBezierTo(
-      center.dx + bodyWidth * 0.6, legY + bodyHeight * 0.1,
-      center.dx + bodyWidth * 0.4, legY + bodyHeight * 0.25,
-    );
-    
-    final legPaint = Paint()
-      ..color = isSelected ? Colors.white : Colors.grey[400]!
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = bodyWidth * 0.15
-      ..strokeCap = StrokeCap.round;
-    
-    canvas.drawPath(legPath, legPaint);
-
-    // Arms in meditation pose
-    final armPaint = Paint()
-      ..color = isSelected ? Colors.white : Colors.grey[400]!
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = bodyWidth * 0.12
-      ..strokeCap = StrokeCap.round;
-
-    // Left arm
-    canvas.drawLine(
-      Offset(center.dx - bodyWidth * 0.15, center.dy - bodyHeight * 0.1),
-      Offset(center.dx - bodyWidth * 0.4, center.dy + bodyHeight * 0.05),
-      armPaint,
-    );
-
-    // Right arm
-    canvas.drawLine(
-      Offset(center.dx + bodyWidth * 0.15, center.dy - bodyHeight * 0.1),
-      Offset(center.dx + bodyWidth * 0.4, center.dy + bodyHeight * 0.05),
-      armPaint,
+      handsPaint,
     );
   }
 
-  void _drawChakras(Canvas canvas, Offset center, double bodyHeight) {
-    // Chakra positions from top to bottom
+  void _drawChakraDots(Canvas canvas, Offset center, Size size) {
+    final height = size.height * 0.85;
+    
+    // Much smaller chakra positions along the body centerline
     final chakraPositions = [
-      Offset(center.dx, center.dy - bodyHeight * 0.35), // Crown - Sahasrara
-      Offset(center.dx, center.dy - bodyHeight * 0.28), // Third Eye - Ajna
-      Offset(center.dx, center.dy - bodyHeight * 0.15), // Throat - Vishuddha
-      Offset(center.dx, center.dy - bodyHeight * 0.05), // Heart - Anahata
-      Offset(center.dx, center.dy + bodyHeight * 0.08), // Solar Plexus - Manipura
-      Offset(center.dx, center.dy + bodyHeight * 0.18), // Sacral - Swadhisthana
-      Offset(center.dx, center.dy + bodyHeight * 0.28), // Root - Muladhara
+      Offset(center.dx, center.dy - height * 0.32), // Crown - top of head
+      Offset(center.dx, center.dy - height * 0.25), // Third Eye - forehead
+      Offset(center.dx, center.dy - height * 0.15), // Throat
+      Offset(center.dx, center.dy - height * 0.05), // Heart
+      Offset(center.dx, center.dy + height * 0.05), // Solar Plexus
+      Offset(center.dx, center.dy + height * 0.15), // Sacral
+      Offset(center.dx, center.dy + height * 0.22), // Root
     ];
 
     final chakraColors = [
@@ -149,33 +139,36 @@ class MeditatingHumanPainter extends CustomPainter {
       Color(AppConstants.chakrasData[0]['color']), // Root
     ];
 
+    // Much smaller dots
+    final dotRadius = size.width * 0.04; // Very small dots
+    
     for (int i = 0; i < 7; i++) {
       if (i < activeChakraCount) {
-        // Active chakra - glowing effect
+        // Active chakra - small glowing dot
         final glowPaint = Paint()
-          ..color = chakraColors[i].withOpacity(0.4)
+          ..color = chakraColors[i].withOpacity(0.6)
           ..style = PaintingStyle.fill;
         
         final chakraPaint = Paint()
           ..color = chakraColors[i]
           ..style = PaintingStyle.fill;
 
-        // Glow effect
-        canvas.drawCircle(chakraPositions[i], 8, glowPaint);
-        canvas.drawCircle(chakraPositions[i], 6, chakraPaint);
+        // Small glow
+        canvas.drawCircle(chakraPositions[i], dotRadius + 1, glowPaint);
+        canvas.drawCircle(chakraPositions[i], dotRadius, chakraPaint);
 
-        // Inner light
+        // Tiny inner light
         final innerPaint = Paint()
-          ..color = Colors.white.withOpacity(0.8)
+          ..color = Colors.white.withOpacity(0.9)
           ..style = PaintingStyle.fill;
-        canvas.drawCircle(chakraPositions[i], 2, innerPaint);
+        canvas.drawCircle(chakraPositions[i], dotRadius * 0.4, innerPaint);
       } else {
-        // Inactive chakra - dim
+        // Inactive chakra - very dim small dot
         final dimPaint = Paint()
-          ..color = Colors.grey[400]!.withOpacity(0.3)
+          ..color = Colors.grey[400]!.withOpacity(0.2)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1;
-        canvas.drawCircle(chakraPositions[i], 4, dimPaint);
+          ..strokeWidth = 0.5;
+        canvas.drawCircle(chakraPositions[i], dotRadius * 0.6, dimPaint);
       }
     }
   }
