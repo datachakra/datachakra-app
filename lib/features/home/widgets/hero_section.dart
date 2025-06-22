@@ -83,6 +83,46 @@ class HeroSection extends StatelessWidget {
         
         const SizedBox(height: 16),
         
+        // DataChakra brand tagline
+        Text(
+          'DataChakra',
+          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+            fontSize: isDesktop ? 48 : 36,
+            fontWeight: FontWeight.w800,
+            color: Theme.of(context).textTheme.displayMedium?.color,
+            height: 1.2,
+          ),
+        )
+            .animate()
+            .fadeIn(duration: 800.ms, delay: 100.ms)
+            .slideY(
+              begin: 0.3,
+              end: 0,
+              duration: 800.ms,
+              curve: Curves.easeOut,
+            ),
+        
+        Text(
+          'Ancient Wisdom Modern Technology',
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            fontSize: isDesktop ? 18 : 16,
+            fontWeight: FontWeight.w500,
+            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
+            height: 1.4,
+            letterSpacing: 0.5,
+          ),
+        )
+            .animate()
+            .fadeIn(duration: 800.ms, delay: 150.ms)
+            .slideY(
+              begin: 0.3,
+              end: 0,
+              duration: 800.ms,
+              curve: Curves.easeOut,
+            ),
+        
+        const SizedBox(height: 24),
+        
         Text(
           AppConstants.heroTitle,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(

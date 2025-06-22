@@ -124,12 +124,10 @@ class HeaderLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LogoWidget(
+    return const LogoWidget(
       width: 40,
       height: 40,
-      showText: true,
-      textColor: Theme.of(context).textTheme.headlineSmall?.color,
-      textSize: 18,
+      showText: false, // Only show the double helix image
     );
   }
 }
