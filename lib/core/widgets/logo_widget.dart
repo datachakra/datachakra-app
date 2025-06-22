@@ -127,7 +127,8 @@ class HeaderLogo extends StatelessWidget {
     return const LogoWidget(
       width: 40,
       height: 40,
-      showText: false, // Only show the double helix image - v2.1
+      showText: true, // Show DataChakra text beside logo - v2.2
+      textSize: 18,
     );
   }
 }

@@ -224,46 +224,88 @@ class HeroSection extends StatelessWidget {
     final isMobile = ResponsiveUtils.isMobile(context);
     
     return SizedBox(
-      height: isDesktop ? 700 : (isMobile ? 450 : 550),
+      height: isDesktop ? 600 : (isMobile ? 400 : 500),
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: isDesktop ? 400 : (isMobile ? 250 : 300),
-              height: isDesktop ? 400 : (isMobile ? 250 : 300),
-              child: const Center(
-                child: LargeHeroLogo(),
-              ),
-            ),
-            const SizedBox(height: 24),
-            Column(
+        child: isDesktop 
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  'DataChakra',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontSize: isDesktop ? 48 : (isMobile ? 32 : 40),
-                    fontWeight: FontWeight.w800,
-                    color: Theme.of(context).textTheme.displayMedium?.color,
-                    height: 1.2,
+                SizedBox(
+                  width: 400,
+                  height: 400,
+                  child: const Center(
+                    child: LargeHeroLogo(),
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  'Ancient Wisdom Modern Technology',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontSize: isDesktop ? 18 : (isMobile ? 14 : 16),
-                    fontWeight: FontWeight.w500,
-                    color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
-                    height: 1.4,
-                    letterSpacing: 0.5,
+                const SizedBox(width: 40),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'DataChakra',
+                      style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        fontSize: 48,
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).textTheme.displayMedium?.color,
+                        height: 1.2,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Ancient Wisdom\nModern Technology',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
+                        height: 1.4,
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: isMobile ? 250 : 300,
+                  height: isMobile ? 250 : 300,
+                  child: const Center(
+                    child: LargeHeroLogo(),
                   ),
-                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 24),
+                Column(
+                  children: [
+                    Text(
+                      'DataChakra',
+                      style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                        fontSize: isMobile ? 32 : 40,
+                        fontWeight: FontWeight.w800,
+                        color: Theme.of(context).textTheme.displayMedium?.color,
+                        height: 1.2,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Ancient Wisdom Modern Technology',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontSize: isMobile ? 14 : 16,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
+                        height: 1.4,
+                        letterSpacing: 0.5,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
         )
             .animate()
             .fadeIn(duration: 1200.ms, delay: 600.ms)

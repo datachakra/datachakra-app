@@ -41,7 +41,7 @@ class AppConstants {
       'meaning': 'Root of existence, survival & grounding',
       'subtitle': 'Foundational Bedrock',
       'color': 0xFFE74C3C,
-      'description': 'Located at the base of spine. Governs survival, grounding, and basic needs. In AI/ML: Mathematical foundations (Linear Algebra, Calculus, Statistics) and Computer Science fundamentals - your stable foundation.',
+      'description': 'Located at the base of spine. Governs survival, grounding, and basic needs - the foundation for all higher development. DataChakra interprets this as having deep understanding and knowledge of: Mathematical foundations (Linear Algebra, Calculus, Statistics) and Computer Science fundamentals. Just as the root chakra anchors spiritual growth, these mathematical principles anchor all AI development.',
       'topics': ['Linear Algebra', 'Calculus', 'Statistics', 'Computer Science'],
     },
     {
@@ -49,7 +49,7 @@ class AppConstants {
       'meaning': 'Seat of creative & emotional energy',
       'subtitle': 'Code Creation',
       'color': 0xFFF39C12,
-      'description': 'Located below navel. Governs creativity, sexuality, and emotional balance. In AI/ML: Python programming mastery, Database & SQL skills - your creative coding power.',
+      'description': 'Located below navel. Governs creativity, sexuality, and emotional balance - the source of creative life force. DataChakra interprets this as having deep understanding and knowledge of: Python programming mastery and Database & SQL skills. Like creative energy flowing through the sacral chakra, code flows through elegant programming to create digital life.',
       'topics': ['Python Programming', 'Database & SQL', 'Development Tools'],
     },
     {
@@ -57,7 +57,7 @@ class AppConstants {
       'meaning': 'Center of personal power & transformation',
       'subtitle': 'Data Power',
       'color': 0xFFF1C40F,
-      'description': 'Located at solar plexus. Governs personal power, confidence, and transformation. In AI/ML: Data architecture theory, Distributed systems - your inner fire and determination.',
+      'description': 'Located at solar plexus. Governs personal power, confidence, and transformation - the fire of willpower and determination. DataChakra interprets this as having deep understanding and knowledge of: Data architecture theory and Distributed systems. As the solar plexus transforms raw energy into focused power, these skills transform raw data into structured, scalable systems.',
       'topics': ['Data Architecture', 'Distributed Systems', 'Streaming Tech'],
     },
     {
@@ -65,7 +65,7 @@ class AppConstants {
       'meaning': 'Center of love, compassion & connection',
       'subtitle': 'Pipeline Harmony',
       'color': 0xFF27AE60,
-      'description': 'Located at heart center. Governs love, compassion, and connection. In AI/ML: Data engineering practice, Apache Spark, Kafka - harmonious data flow.',
+      'description': 'Located at heart center. Governs love, compassion, and connection - the bridge between lower and higher consciousness. DataChakra interprets this as having deep understanding and knowledge of: Data engineering practice, Apache Spark, and Kafka. Like the heart connecting body and mind, these technologies create seamless connections between disparate data sources, enabling compassionate AI that serves humanity.',
       'topics': ['Data Engineering', 'Apache Spark', 'Kafka', 'Cloud Platforms'],
     },
     {
@@ -73,7 +73,7 @@ class AppConstants {
       'meaning': 'Center of communication & truth',
       'subtitle': 'Model Expression',
       'color': 0xFF3498DB,
-      'description': 'Located at throat. Governs communication, truth, and self-expression. In AI/ML: Statistical learning theory, ML mathematics - expressing data truth.',
+      'description': 'Located at throat. Governs communication, truth, and self-expression - the power to speak reality into existence. DataChakra interprets this as having deep understanding and knowledge of: Statistical learning theory and ML mathematics. As the throat chakra gives voice to inner truth, these mathematical principles give voice to hidden patterns in data, expressing the fundamental truths within information.',
       'topics': ['Statistical Learning', 'ML Mathematics', 'Algorithms'],
     },
     {
@@ -81,7 +81,7 @@ class AppConstants {
       'meaning': 'Third eye of wisdom & intuition',
       'subtitle': 'Deep Vision',
       'color': 0xFF9B59B6,
-      'description': 'Located between eyebrows. Governs intuition, wisdom, and higher perception. In AI/ML: Deep learning, Computer vision, NLP - seeing beyond the obvious.',
+      'description': 'Located between eyebrows. Governs intuition, wisdom, and higher perception - the third eye that sees beyond physical reality. DataChakra interprets this as having deep understanding and knowledge of: Deep learning, Computer vision, and NLP. Like the third eye perceiving subtle energies invisible to physical senses, these AI technologies perceive patterns and insights hidden from human consciousness.',
       'topics': ['Classical ML', 'Deep Learning', 'Computer Vision', 'NLP'],
     },
     {
@@ -89,7 +89,7 @@ class AppConstants {
       'meaning': 'Thousand-petaled lotus, divine connection',
       'subtitle': 'AI Mastery',
       'color': 0xFF8B4513,
-      'description': 'Located at crown of head. Governs spiritual connection and enlightenment. In AI/ML: Transformer architectures, Large Language Models - achieving AI mastery.',
+      'description': 'Located at crown of head. Governs spiritual connection and enlightenment - unity with universal consciousness. DataChakra interprets this as having deep understanding and knowledge of: Transformer architectures and Large Language Models. As the crown chakra connects individual consciousness to universal wisdom, these advanced AI systems connect human intelligence to the vast collective knowledge of humanity, achieving technological enlightenment.',
       'topics': ['Transformers', 'Large Language Models', 'AI Agents'],
     },
   ];
