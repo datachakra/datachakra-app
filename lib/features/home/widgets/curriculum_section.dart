@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/responsive_utils.dart';
-import '../../../shared/widgets/animated_chakra.dart';
 import '../../../shared/widgets/meditating_human.dart';
 
 class CurriculumSection extends StatefulWidget {
