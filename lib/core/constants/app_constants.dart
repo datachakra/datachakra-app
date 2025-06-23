@@ -37,7 +37,9 @@ class AppConstants {
   // Chakras Data - Authentic Sanskrit Names with Hindu Philosophy
   static const List<Map<String, dynamic>> chakrasData = [
     {
-      'name': 'Muladhara',
+      'name': 'Root Chakra (Muladhara)',
+      'sanskrit': 'Muladhara',
+      'english': 'Root Chakra',
       'meaning': 'Root of existence, survival & grounding',
       'subtitle': 'Foundational Bedrock',
       'color': 0xFFE74C3C,
@@ -45,7 +47,9 @@ class AppConstants {
       'topics': ['Linear Algebra', 'Calculus', 'Statistics', 'Computer Science'],
     },
     {
-      'name': 'Swadhisthana',
+      'name': 'Sacral Chakra (Swadhisthana)',
+      'sanskrit': 'Swadhisthana',
+      'english': 'Sacral Chakra',
       'meaning': 'Seat of creative & emotional energy',
       'subtitle': 'Code Creation',
       'color': 0xFFF39C12,
@@ -53,7 +57,9 @@ class AppConstants {
       'topics': ['Python Programming', 'Database & SQL', 'Development Tools'],
     },
     {
-      'name': 'Manipura',
+      'name': 'Solar Plexus Chakra (Manipura)',
+      'sanskrit': 'Manipura',
+      'english': 'Solar Plexus Chakra',
       'meaning': 'Center of personal power & transformation',
       'subtitle': 'Data Power',
       'color': 0xFFF1C40F,
@@ -61,7 +67,9 @@ class AppConstants {
       'topics': ['Data Architecture', 'Distributed Systems', 'Streaming Tech'],
     },
     {
-      'name': 'Anahata',
+      'name': 'Heart Chakra (Anahata)',
+      'sanskrit': 'Anahata',
+      'english': 'Heart Chakra',
       'meaning': 'Center of love, compassion & connection',
       'subtitle': 'Pipeline Harmony',
       'color': 0xFF27AE60,
@@ -69,7 +77,9 @@ class AppConstants {
       'topics': ['Data Engineering', 'Apache Spark', 'Kafka', 'Cloud Platforms'],
     },
     {
-      'name': 'Vishuddha',
+      'name': 'Throat Chakra (Vishuddha)',
+      'sanskrit': 'Vishuddha',
+      'english': 'Throat Chakra',
       'meaning': 'Center of communication & truth',
       'subtitle': 'Model Expression',
       'color': 0xFF3498DB,
@@ -77,7 +87,9 @@ class AppConstants {
       'topics': ['Statistical Learning', 'ML Mathematics', 'Algorithms'],
     },
     {
-      'name': 'Ajna',
+      'name': 'Third Eye Chakra (Ajna)',
+      'sanskrit': 'Ajna',
+      'english': 'Third Eye Chakra',
       'meaning': 'Third eye of wisdom & intuition',
       'subtitle': 'Deep Vision',
       'color': 0xFF9B59B6,
@@ -85,7 +97,9 @@ class AppConstants {
       'topics': ['Classical ML', 'Deep Learning', 'Computer Vision', 'NLP'],
     },
     {
-      'name': 'Sahasrara',
+      'name': 'Crown Chakra (Sahasrara)',
+      'sanskrit': 'Sahasrara',
+      'english': 'Crown Chakra',
       'meaning': 'Thousand-petaled lotus, divine connection',
       'subtitle': 'AI Mastery',
       'color': 0xFF8B4513,
