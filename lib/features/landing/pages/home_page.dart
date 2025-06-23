@@ -154,12 +154,13 @@ class _HomePageState extends ConsumerState<HomePage> {
           
           // Dark Mode Toggle
           _buildDarkModeToggle(context),
-          const SizedBox(width: 16),
+          if (MediaQuery.of(context).size.width > 480) const SizedBox(width: 16),
           
-          // CTA Buttons
-          Row(
-            children: [
-              if (MediaQuery.of(context).size.width > 480) ...[
+          // CTA Buttons - only show on larger screens
+          if (MediaQuery.of(context).size.width > 480) 
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
                 TextButton(
                   onPressed: () => _launchURL(AppConstants.loginUrl),
                   child: const Text(
@@ -171,8 +172,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ),
                 const SizedBox(width: 16),
-              ],
-              ElevatedButton(
+                ElevatedButton(
                 onPressed: () => _launchURL(AppConstants.signupUrl),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.primaryStart,
@@ -189,8 +189,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                   style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
-            ],
-          ),
+              ],
+            ),
         ],
       ),
     )

@@ -25,8 +25,8 @@ class LogoWidget extends StatelessWidget {
       children: [
         _buildLogo(),
         if (showText) ...[
-          const SizedBox(width: 12),
-          _buildText(context),
+          const SizedBox(width: 8), // Reduced from 12 to 8
+          Flexible(child: _buildText(context)),
         ],
       ],
     );

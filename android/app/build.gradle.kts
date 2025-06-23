@@ -8,7 +8,8 @@ plugins {
 android {
     namespace = "com.example.datachakra_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // Remove problematic NDK version for now
+    // ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

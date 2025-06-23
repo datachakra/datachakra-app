@@ -144,6 +144,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
           // Header with avatar and info
           Row(
@@ -166,7 +167,7 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                   ),
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12), // Reduced from 16 to 12
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -176,19 +177,23 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
                       style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         fontSize: isDesktop ? 18 : 16,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       testimonial['role'],
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: AppColors.textSecondary,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
               ),
-              // Rating stars
-              Row(
-                children: List.generate(
+              // Rating stars - make flexible
+              if (isDesktop) 
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: List.generate(
                   5,
                   (starIndex) => Icon(
                     Icons.star,
@@ -202,19 +207,23 @@ class _TestimonialsSectionState extends State<TestimonialsSection> {
             ],
           ),
           
-          SizedBox(height: isDesktop ? 24 : 20),
+          SizedBox(height: isDesktop ? 20 : 16), // Reduced spacing
           
           // Testimonial text
-          Text(
-            testimonial['testimonial'],
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-              fontSize: isDesktop ? 18 : 16,
-              height: 1.6,
-              fontStyle: FontStyle.italic,
+          Flexible(
+            child: Text(
+              testimonial['testimonial'],
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontSize: isDesktop ? 16 : 14, // Reduced font size
+                height: 1.5, // Reduced line height
+                fontStyle: FontStyle.italic,
+              ),
+              maxLines: isDesktop ? 4 : 3, // Limit lines
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           
-          const Spacer(),
+          SizedBox(height: isDesktop ? 16 : 12), // Fixed spacing instead of Spacer
           
           // Transformation stats
           Container(
