@@ -60,12 +60,16 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // Main content
-          SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            // Main content
+            SingleChildScrollView(
+              controller: _scrollController,
+              physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
               children: [
                 // Navigation Bar
                 _buildNavigationBar(context),
@@ -111,7 +115,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                   .fadeIn(duration: 300.ms)
                   .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0)),
             ),
-        ],
+          ],
+        ),
       ),
     );
   }
