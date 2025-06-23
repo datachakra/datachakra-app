@@ -1,5 +1,5 @@
 class AppConstants {
-  // URLs
+  // URLs - Now managed by AppConfig for environment-specific values
   static const String appUrl = 'https://app.datachakra.com';
   static const String signupUrl = '$appUrl/signup';
   static const String loginUrl = '$appUrl/login';

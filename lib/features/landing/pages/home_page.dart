@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'widgets/hero_section.dart';
-import 'widgets/curriculum_section.dart';
-import 'widgets/features_section.dart';
-import 'widgets/testimonials_section.dart';
-import 'widgets/pricing_section.dart';
-import 'widgets/faq_section.dart';
-import 'widgets/footer_section.dart';
-import '../../core/constants/app_colors.dart';
-import '../../core/constants/app_constants.dart';
-import '../../core/providers/theme_provider.dart';
-import '../../core/widgets/logo_widget.dart';
+import 'package:go_router/go_router.dart';
+import '../widgets/hero_section.dart';
+import '../widgets/curriculum_section.dart';
+import '../widgets/features_section.dart';
+import '../widgets/testimonials_section.dart';
+import '../widgets/pricing_section.dart';
+import '../widgets/faq_section.dart';
+import '../widgets/footer_section.dart';
+import '../../../core/constants/app_colors.dart';
+import '../../../core/constants/app_constants.dart';
+import '../../../core/providers/theme_provider.dart';
+import '../../../core/widgets/logo_widget.dart';
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
@@ -266,7 +267,14 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   void _launchURL(String url) async {
-    // In a real app, you'd use url_launcher
-    debugPrint('Navigate to: $url');
+    // For now, navigate to app routes
+    if (url.contains('login')) {
+      context.go('/login');
+    } else if (url.contains('signup')) {
+      context.go('/signup');
+    } else {
+      // In a real app, you'd use url_launcher for external URLs
+      debugPrint('Navigate to: $url');
+    }
   }
 }
