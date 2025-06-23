@@ -75,6 +75,48 @@ class HeroSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         
+        // 🚀 Milestone 1 Complete Banner
+        Container(
+          margin: const EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xFF4CAF50), Color(0xFF8BC34A)],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.circular(25),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.green.withOpacity(0.3),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('🚀', style: TextStyle(fontSize: 20)),
+              const SizedBox(width: 8),
+              Text(
+                'MILESTONE 1 COMPLETE!',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: isDesktop ? 16 : 14,
+                ),
+              ),
+              const SizedBox(width: 8),
+              const Text('✅', style: TextStyle(fontSize: 16)),
+            ],
+          ),
+        )
+            .animate()
+            .fadeIn(duration: 600.ms, delay: 100.ms)
+            .slideX(begin: -0.2, end: 0)
+            .scale(begin: const Offset(0.8, 0.8), end: const Offset(1.0, 1.0)),
+        
         Text(
           AppConstants.heroTitle,
           style: Theme.of(context).textTheme.displayLarge?.copyWith(
