@@ -8,7 +8,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:datachakra_landing/main.dart';
+import 'package:datachakra_app/main.dart';
 
 void main() {
   testWidgets('DataChakra app smoke test', (WidgetTester tester) async {

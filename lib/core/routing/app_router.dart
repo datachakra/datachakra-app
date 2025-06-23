@@ -67,7 +67,7 @@ class AppRouter {
           children: [
             const Icon(Icons.error_outline, size: 48, color: Colors.red),
             const SizedBox(height: 16),
-            Text('Page not found: ${state.location}'),
+            Text('Page not found: ${state.uri.toString()}'),
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => context.go('/'),
