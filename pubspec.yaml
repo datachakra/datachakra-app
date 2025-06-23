@@ -50,13 +50,13 @@ dependencies:
   shared_preferences: ^2.2.2
   
   # Authentication Core
-  firebase_core: ^2.24.2
-  firebase_auth: ^4.15.3
-  cloud_firestore: ^4.13.6
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.17.5
   
   # Social Platforms
   google_sign_in: ^6.1.5
-  flutter_facebook_auth: ^6.0.3
+  flutter_facebook_auth: ^6.2.0
   sign_in_with_apple: ^5.0.0
   
   # Security & Storage
