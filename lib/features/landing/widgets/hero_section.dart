@@ -199,7 +199,7 @@ class HeroSection extends StatelessWidget {
                         .slideX(begin: 0.3, end: 0),
                     const SizedBox(height: 8),
                     Text(
-                      'Ancient Wisdom\nModern Technology',
+                      'Ancient Wisdom\nModern Technology\n🚀 Deployment Test Active',
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
