@@ -158,60 +158,68 @@ class HeroSection extends StatelessWidget {
     return SizedBox(
       height: isDesktop ? 600 : (isMobile ? 400 : 500),
       child: Padding(
-        padding: EdgeInsets.only(left: isDesktop ? 10 : 0, right: isDesktop ? 160 : 0),
+        padding: EdgeInsets.symmetric(
+          horizontal: isDesktop ? 40 : (isMobile ? 16 : 24),
+        ),
         child: Center(
           child: isDesktop 
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: 400,
-                  height: 400,
-                  child: Center(
-                    child: const LargeHeroLogo()
-                        .animate()
-                        .fadeIn(duration: 1200.ms, delay: 600.ms)
-                        .scale(
-                          begin: const Offset(0.5, 0.5),
-                          end: const Offset(1.0, 1.0),
-                          duration: 1200.ms,
-                          curve: Curves.easeOutBack,
-                        ),
+                Flexible(
+                  flex: 2,
+                  child: SizedBox(
+                    width: 400,
+                    height: 400,
+                    child: Center(
+                      child: const LargeHeroLogo()
+                          .animate()
+                          .fadeIn(duration: 1200.ms, delay: 600.ms)
+                          .scale(
+                            begin: const Offset(0.5, 0.5),
+                            end: const Offset(1.0, 1.0),
+                            duration: 1200.ms,
+                            curve: Curves.easeOutBack,
+                          ),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'DataChakra',
-                      style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                        fontSize: 48,
-                        fontWeight: FontWeight.w800,
-                        color: Theme.of(context).textTheme.displayMedium?.color,
-                        height: 1.2,
-                      ),
-                    )
-                        .animate()
-                        .fadeIn(duration: 800.ms, delay: 800.ms)
-                        .slideX(begin: 0.3, end: 0),
-                    const SizedBox(height: 8),
-                    Text(
-                      'Ancient Wisdom\nModern Technology',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
-                        height: 1.4,
-                        letterSpacing: 0.5,
-                      ),
-                    )
-                        .animate()
-                        .fadeIn(duration: 800.ms, delay: 1000.ms)
-                        .slideX(begin: 0.3, end: 0),
-                  ],
+                Flexible(
+                  flex: 1,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'DataChakra',
+                        style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                          fontSize: 48,
+                          fontWeight: FontWeight.w800,
+                          color: Theme.of(context).textTheme.displayMedium?.color,
+                          height: 1.2,
+                        ),
+                      )
+                          .animate()
+                          .fadeIn(duration: 800.ms, delay: 800.ms)
+                          .slideX(begin: 0.3, end: 0),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Ancient Wisdom\nModern Technology',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
+                          height: 1.4,
+                          letterSpacing: 0.5,
+                        ),
+                      )
+                          .animate()
+                          .fadeIn(duration: 800.ms, delay: 1000.ms)
+                          .slideX(begin: 0.3, end: 0),
+                    ],
+                  ),
                 ),
               ],
             )
