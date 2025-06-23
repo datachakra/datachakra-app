@@ -1,0 +1,266 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class AuthService {
+  static final FirebaseAuth _auth = FirebaseAuth.instance;
+  static final GoogleSignIn _googleSignIn = GoogleSignIn();
+  static final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+  static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Current user getter
+  static User? get currentUser => _auth.currentUser;
+  
+  // Auth state stream
+  static Stream<User?> get authStateChanges => _auth.authStateChanges();
+
+  // Email/Password Authentication
+  static Future<UserCredential?> signUpWithEmailPassword({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
+    try {
+      final credential = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      
+      // Update display name
+      await credential.user?.updateDisplayName(name);
+      
+      // Create user document in Firestore
+      await _createUserDocument(credential.user!, {
+        'name': name,
+        'email': email,
+        'provider': 'email',
+        'createdAt': FieldValue.serverTimestamp(),
+      });
+      
+      return credential;
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  static Future<UserCredential?> signInWithEmailPassword({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Google Sign-In
+  static Future<UserCredential?> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return null;
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      
+      // Create/update user document
+      if (userCredential.user != null) {
+        await _createUserDocument(userCredential.user!, {
+          'name': userCredential.user!.displayName ?? 'Google User',
+          'email': userCredential.user!.email ?? '',
+          'provider': 'google',
+          'photoUrl': userCredential.user!.photoURL,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+      
+      return userCredential;
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Facebook Sign-In
+  static Future<UserCredential?> signInWithFacebook() async {
+    try {
+      final LoginResult result = await FacebookAuth.instance.login();
+      
+      if (result.status != LoginStatus.success) return null;
+
+      final OAuthCredential credential = FacebookAuthProvider.credential(
+        result.accessToken!.token,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      
+      // Create/update user document
+      if (userCredential.user != null) {
+        await _createUserDocument(userCredential.user!, {
+          'name': userCredential.user!.displayName ?? 'Facebook User',
+          'email': userCredential.user!.email ?? '',
+          'provider': 'facebook',
+          'photoUrl': userCredential.user!.photoURL,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+      
+      return userCredential;
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Apple Sign-In
+  static Future<UserCredential?> signInWithApple() async {
+    try {
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        accessToken: appleCredential.authorizationCode,
+      );
+
+      final userCredential = await _auth.signInWithCredential(oauthCredential);
+      
+      // Create/update user document
+      if (userCredential.user != null) {
+        final name = appleCredential.givenName != null && appleCredential.familyName != null
+            ? '${appleCredential.givenName} ${appleCredential.familyName}'
+            : userCredential.user!.displayName ?? 'Apple User';
+            
+        await _createUserDocument(userCredential.user!, {
+          'name': name,
+          'email': userCredential.user!.email ?? '',
+          'provider': 'apple',
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+      
+      return userCredential;
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Password Reset
+  static Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Sign Out
+  static Future<void> signOut() async {
+    try {
+      await Future.wait([
+        _auth.signOut(),
+        _googleSignIn.signOut(),
+        FacebookAuth.instance.logOut(),
+      ]);
+      await _secureStorage.deleteAll();
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Create user document in Firestore
+  static Future<void> _createUserDocument(User user, Map<String, dynamic> data) async {
+    final userDoc = _firestore.collection('users').doc(user.uid);
+    final docSnapshot = await userDoc.get();
+    
+    if (!docSnapshot.exists) {
+      await userDoc.set(data);
+    } else {
+      // Update existing document with new login timestamp
+      await userDoc.update({
+        'lastLoginAt': FieldValue.serverTimestamp(),
+      });
+    }
+  }
+
+  // Get user data from Firestore
+  static Future<Map<String, dynamic>?> getUserData(String uid) async {
+    try {
+      final doc = await _firestore.collection('users').doc(uid).get();
+      return doc.data();
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // Update user profile
+  static Future<void> updateUserProfile({
+    String? displayName,
+    String? photoURL,
+    Map<String, dynamic>? additionalData,
+  }) async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) throw Exception('No user logged in');
+
+      // Update Firebase Auth profile
+      if (displayName != null || photoURL != null) {
+        await user.updateProfile(
+          displayName: displayName,
+          photoURL: photoURL,
+        );
+      }
+
+      // Update Firestore document
+      final updateData = <String, dynamic>{};
+      if (displayName != null) updateData['name'] = displayName;
+      if (photoURL != null) updateData['photoUrl'] = photoURL;
+      if (additionalData != null) updateData.addAll(additionalData);
+      
+      if (updateData.isNotEmpty) {
+        updateData['updatedAt'] = FieldValue.serverTimestamp();
+        await _firestore.collection('users').doc(user.uid).update(updateData);
+      }
+    } catch (e) {
+      throw _handleAuthException(e);
+    }
+  }
+
+  // Handle authentication exceptions
+  static String _handleAuthException(dynamic e) {
+    if (e is FirebaseAuthException) {
+      switch (e.code) {
+        case 'user-not-found':
+          return 'No user found with this email address.';
+        case 'wrong-password':
+          return 'Incorrect password.';
+        case 'email-already-in-use':
+          return 'An account already exists with this email address.';
+        case 'weak-password':
+          return 'Password is too weak.';
+        case 'invalid-email':
+          return 'Please enter a valid email address.';
+        case 'user-disabled':
+          return 'This account has been disabled.';
+        case 'too-many-requests':
+          return 'Too many attempts. Please try again later.';
+        default:
+          return e.message ?? 'An error occurred during authentication.';
+      }
+    }
+    return 'An unexpected error occurred. Please try again.';
+  }
+}
