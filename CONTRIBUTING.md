@@ -1,4 +1,4 @@
-# Contributing to DataChakra Landing Page
+# Contributing to DataChakra App
 
 We love your input! We want to make contributing to this project as easy and transparent as possible.
 
@@ -34,8 +34,8 @@ We use GitHub to host code, track issues and feature requests, and accept pull r
 
 ```bash
 # Clone the repository
-git clone https://github.com/datachakra/datachakra-landing.git
-cd datachakra-landing
+git clone https://github.com/datachakra/datachakra-app.git
+cd datachakra_app
 
 # Install dependencies
 flutter pub get

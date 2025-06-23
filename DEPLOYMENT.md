@@ -5,17 +5,17 @@
 To enable GitHub Pages deployment for this repository, follow these steps:
 
 ### 1. Enable GitHub Pages
-1. Go to your repository: https://github.com/datachakra/datachakra-landing
+1. Go to your repository: https://github.com/datachakra/datachakra-app
 2. Click on **Settings** tab
 3. Scroll down to **Pages** section in the left sidebar
 4. Under **Source**, select **"GitHub Actions"**
 5. Click **Save**
 
 ### 2. Verify Deployment
-1. Go to **Actions** tab: https://github.com/datachakra/datachakra-landing/actions
+1. Go to **Actions** tab: https://github.com/datachakra/datachakra-app/actions
 2. Look for the latest **"Deploy to GitHub Pages"** workflow
 3. It should show ✅ **Success** status
-4. Your site will be available at: **https://datachakra.github.io/datachakra-landing**
+4. Your site will be available at: **https://datachakra.com**
 
 ### 3. Workflow Overview
 The GitHub Actions workflow:
@@ -53,5 +53,5 @@ If you want to use `datachakra.com`:
 
 ---
 
-🌟 **Your DataChakra landing page will be live at:**
-**https://datachakra.github.io/datachakra-landing**
+🌟 **Your DataChakra app will be live at:**
+**https://datachakra.com**

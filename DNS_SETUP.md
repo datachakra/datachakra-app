@@ -2,7 +2,7 @@
 
 ## 📋 **DNS Configuration Required**
 
-To host your DataChakra landing page on `www.datachakra.com`, you need to configure your DNS settings.
+To host your DataChakra app on `datachakra.com`, the DNS is already configured correctly.
 
 ### **🔧 DNS Records Setup**
 
@@ -41,10 +41,10 @@ TTL: 3600
 ### **🎯 GitHub Pages Configuration**
 
 1. **Go to repository settings**: 
-   https://github.com/datachakra/datachakra-landing/settings/pages
+   https://github.com/datachakra/datachakra-app/settings/pages
 
 2. **Under "Custom domain"**:
-   - Enter: `www.datachakra.com`
+   - Enter: `datachakra.com`
    - Click "Save"
 
 3. **Enable "Enforce HTTPS"** (after DNS propagates)

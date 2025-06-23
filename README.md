@@ -1,16 +1,16 @@
-# DataChakra Landing Page 🌟
+# DataChakra App 🌟
 
-[![Deploy to GitHub Pages](https://github.com/datachakra/datachakra-landing/actions/workflows/deploy.yml/badge.svg)](https://github.com/datachakra/datachakra-landing/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/datachakra/datachakra-app/actions/workflows/deploy.yml/badge.svg)](https://github.com/datachakra/datachakra-app/actions/workflows/deploy.yml)
 [![Flutter Web](https://img.shields.io/badge/Flutter-Web-blue.svg)](https://flutter.dev/web)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-success.svg)](https://datachakra.github.io/datachakra-landing)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success.svg)](https://datachakra.com)
 
-A stunning, responsive Flutter web landing page for DataChakra - the complete AI/ML mastery platform.
+A comprehensive Flutter application for DataChakra - the complete AI/ML mastery platform. This repository contains the full web application including landing pages, authentication, dashboard, and learning modules.
 
-🌐 **Live Demo**: [https://datachakra.github.io/datachakra-landing](https://datachakra.github.io/datachakra-landing)
+🌐 **Live Demo**: [https://datachakra.com](https://datachakra.com)
 
 ## 🎯 Overview
 
-DataChakra's landing page combines ancient chakra wisdom with modern AI/ML education, featuring:
+DataChakra's complete application combines ancient chakra wisdom with modern AI/ML education, featuring:
 
 - **Responsive Design**: Perfect on mobile, tablet, and desktop
 - **Animated Chakra Visualization**: Interactive 7-chakra learning path
@@ -49,8 +49,8 @@ DataChakra's landing page combines ancient chakra wisdom with modern AI/ML educa
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd datachakra_landing_page
+   git clone https://github.com/datachakra/datachakra-app.git
+   cd datachakra_app
    ```
 
 2. **Install dependencies**
@@ -101,19 +101,34 @@ lib/
 │   ├── constants/
 │   │   ├── app_colors.dart      # Color palette
 │   │   └── app_constants.dart   # App constants
-│   └── theme/
-│       └── app_theme.dart       # Theme configuration
+│   ├── theme/
+│   │   └── app_theme.dart       # Theme configuration
+│   ├── routing/
+│   │   └── app_router.dart      # App navigation
+│   ├── providers/
+│   │   └── theme_provider.dart  # State management
+│   └── widgets/
+│       └── logo_widget.dart     # Logo components
 ├── features/
-│   └── home/
-│       ├── home_page.dart       # Main page
-│       └── widgets/             # Section widgets
-│           ├── hero_section.dart
-│           ├── curriculum_section.dart
-│           ├── features_section.dart
-│           ├── testimonials_section.dart
-│           ├── pricing_section.dart
-│           ├── faq_section.dart
-│           └── footer_section.dart
+│   ├── landing/
+│   │   ├── pages/
+│   │   │   └── home_page.dart   # Landing page
+│   │   └── widgets/             # Landing widgets
+│   ├── auth/
+│   │   └── pages/               # Login/signup pages
+│   ├── dashboard/
+│   │   └── pages/               # User dashboard
+│   ├── courses/
+│   │   └── pages/               # Course content
+│   ├── chakras/
+│   │   └── pages/               # Chakra details
+│   └── profile/
+│       └── pages/               # User profile
+├── services/
+│   ├── api/
+│   │   └── api_service.dart     # API integration
+│   └── storage/
+│       └── storage_service.dart # Local storage
 ├── shared/
 │   └── widgets/
 │       ├── gradient_button.dart # Reusable button
@@ -177,13 +192,13 @@ This repository is configured for automatic deployment to GitHub Pages:
 
 1. **Push to main branch** triggers automatic deployment
 2. **GitHub Actions** builds the Flutter web app
-3. **Deploys to GitHub Pages** at: https://datachakra.github.io/datachakra-landing
-4. **Custom domain** supported via CNAME (datachakra.com)
+3. **Deploys to GitHub Pages** at: https://datachakra.com
+4. **Custom domain** configured via CNAME
 
 ### Manual Deployment
 ```bash
 # Build for production
-flutter build web --release --base-href "/datachakra-landing/"
+flutter build web --release --base-href "/"
 
 # The built files will be in build/web/
 ```

@@ -7,7 +7,7 @@ GitHub Pages needs to be manually enabled before the automated deployment can wo
 ### **Step 1: Enable GitHub Pages**
 
 1. **Go to your repository**: 
-   https://github.com/datachakra/datachakra-landing
+   https://github.com/datachakra/datachakra-app
 
 2. **Click "Settings"** (in the top repository navigation)
 
@@ -28,14 +28,14 @@ After enabling Pages, you should see:
 ### **Step 3: Trigger Deployment**
 
 Once Pages is enabled:
-1. **Go to Actions**: https://github.com/datachakra/datachakra-landing/actions
+1. **Go to Actions**: https://github.com/datachakra/datachakra-app/actions
 2. **Find the latest workflow** (should auto-trigger)
 3. **Or manually trigger**: Click "Run workflow" on the Deploy workflow
 
 ### **Step 4: Access Your Site**
 
 After successful deployment (~5 minutes):
-🌐 **https://datachakra.github.io/datachakra-landing**
+🌐 **https://datachakra.com**
 
 ---
 
