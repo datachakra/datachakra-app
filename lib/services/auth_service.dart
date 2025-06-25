@@ -1,10 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
-  static final GoogleSignIn _googleSignIn = GoogleSignIn();
+  static final GoogleSignIn _googleSignIn = GoogleSignIn(
+    // Add web client ID for Google Sign-In
+    clientId: kIsWeb ? '928028959885-a1b53f4c952ba6eb3d2ec4.apps.googleusercontent.com' : null,
+  );
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Current user getter
@@ -59,6 +63,12 @@ class AuthService {
   // Google Sign-In
   static Future<UserCredential?> signInWithGoogle() async {
     try {
+      // For web, we need to configure the proper Google Client ID
+      // This is a temporary implementation
+      if (kIsWeb) {
+        throw Exception('Google Sign-In requires additional setup for web. Please use email/password authentication for now, or contact support for Google Sign-In setup.');
+      }
+      
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) return null;
 
@@ -176,7 +186,14 @@ class AuthService {
 
   // Handle authentication exceptions
   static String _handleAuthException(dynamic e) {
+    // Log the full error for debugging
+    print('🔍 Auth Error: $e');
+    print('🔍 Error Type: ${e.runtimeType}');
+    
     if (e is FirebaseAuthException) {
+      print('🔍 Firebase Auth Error Code: ${e.code}');
+      print('🔍 Firebase Auth Error Message: ${e.message}');
+      
       switch (e.code) {
         case 'user-not-found':
           return 'No user found with this email address.';
@@ -192,10 +209,18 @@ class AuthService {
           return 'This account has been disabled.';
         case 'too-many-requests':
           return 'Too many attempts. Please try again later.';
+        case 'popup-blocked':
+          return 'Google sign-in popup was blocked. Please allow popups and try again.';
+        case 'popup-closed-by-user':
+          return 'Google sign-in was cancelled. Please try again.';
+        case 'network-request-failed':
+          return 'Network error. Please check your connection and try again.';
         default:
           return e.message ?? 'An error occurred during authentication.';
       }
     }
-    return 'An unexpected error occurred. Please try again.';
+    
+    // For non-Firebase errors, provide more details
+    return 'Error: ${e.toString()}';
   }
 }
