@@ -2,20 +2,24 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 
 class FirebaseConfig {
+  // 🔥 REPLACE THESE WITH YOUR ACTUAL FIREBASE VALUES FROM STEP 2
   static const String projectId = 'datachakra-app';
-  static const String appId = '1:YOUR_PROJECT_NUMBER:web:YOUR_WEB_APP_ID';
-  static const String messagingSenderId = 'YOUR_MESSAGING_SENDER_ID';
-  static const String apiKey = 'YOUR_API_KEY';
-  
+  static const String appId = '1:928028959885:web:a1b53f4c952ba6eb3d2ec4';
+  static const String messagingSenderId = '928028959885';
+  static const String apiKey = 'AIzaSyCAIBf7fFMzxQkMI5KWWfkuFjV3FBH1tvQ';
+  static const String authDomain = 'datachakra-app.firebaseapp.com';
+  static const String storageBucket = 'datachakra-app.firebasestorage.app';
+  static const String measurementId = 'G-LC8N69WPE3';
+
   // Web configuration
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: apiKey,
     appId: appId,
     messagingSenderId: messagingSenderId,
     projectId: projectId,
-    authDomain: '$projectId.firebaseapp.com',
-    storageBucket: '$projectId.appspot.com',
-    measurementId: 'G-YOUR_MEASUREMENT_ID',
+    authDomain: authDomain,
+    storageBucket: storageBucket,
+    measurementId: measurementId,
   );
 
   // iOS configuration

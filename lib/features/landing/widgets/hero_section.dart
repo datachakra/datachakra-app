@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:go_router/go_router.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_constants.dart';
 import '../../../core/utils/responsive_utils.dart';
@@ -133,7 +133,7 @@ class HeroSection extends StatelessWidget {
       children: [
         GradientButton(
           text: 'Start Your Journey',
-          onPressed: () => _launchURL(AppConstants.signupUrl),
+          onPressed: () => context.go('/signup'),
           gradient: AppColors.primaryGradient,
         ),
         GradientButton(
@@ -167,7 +167,7 @@ class HeroSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Flexible(
+                Expanded(
                   flex: 2,
                   child: SizedBox(
                     width: 400,
@@ -186,33 +186,40 @@ class HeroSection extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 20),
-                Flexible(
+                Expanded(
                   flex: 1,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'DataChakra',
-                        style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                          fontSize: 48,
-                          fontWeight: FontWeight.w800,
-                          color: Theme.of(context).textTheme.displayMedium?.color,
-                          height: 1.2,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'DataChakra',
+                          style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                            fontSize: 48,
+                            fontWeight: FontWeight.w800,
+                            color: Theme.of(context).textTheme.displayMedium?.color,
+                            height: 1.2,
+                          ),
                         ),
                       )
                           .animate()
                           .fadeIn(duration: 800.ms, delay: 800.ms)
                           .slideX(begin: 0.3, end: 0),
                       const SizedBox(height: 8),
-                      Text(
-                        'Ancient Wisdom\nModern Technology',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
-                          height: 1.4,
-                          letterSpacing: 0.5,
+                      FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'Ancient Wisdom\nModern Technology',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.8),
+                            height: 1.4,
+                            letterSpacing: 0.5,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
                       )
                           .animate()
@@ -276,9 +283,4 @@ class HeroSection extends StatelessWidget {
   }
 
 
-  void _launchURL(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
-    }
-  }
 }

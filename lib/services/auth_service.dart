@@ -1,14 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final GoogleSignIn _googleSignIn = GoogleSignIn();
-  static final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Current user getter
@@ -91,71 +87,14 @@ class AuthService {
     }
   }
 
-  // Facebook Sign-In
+  // Facebook Sign-In (Placeholder for future implementation)
   static Future<UserCredential?> signInWithFacebook() async {
-    try {
-      final LoginResult result = await FacebookAuth.instance.login();
-      
-      if (result.status != LoginStatus.success) return null;
-
-      final OAuthCredential credential = FacebookAuthProvider.credential(
-        result.accessToken!.token,
-      );
-
-      final userCredential = await _auth.signInWithCredential(credential);
-      
-      // Create/update user document
-      if (userCredential.user != null) {
-        await _createUserDocument(userCredential.user!, {
-          'name': userCredential.user!.displayName ?? 'Facebook User',
-          'email': userCredential.user!.email ?? '',
-          'provider': 'facebook',
-          'photoUrl': userCredential.user!.photoURL,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-      }
-      
-      return userCredential;
-    } catch (e) {
-      throw _handleAuthException(e);
-    }
+    throw 'Facebook authentication not yet implemented. Use Google or email/password.';
   }
 
-  // Apple Sign-In
+  // Apple Sign-In (Placeholder for future implementation)  
   static Future<UserCredential?> signInWithApple() async {
-    try {
-      final appleCredential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-
-      final oauthCredential = OAuthProvider("apple.com").credential(
-        idToken: appleCredential.identityToken,
-        accessToken: appleCredential.authorizationCode,
-      );
-
-      final userCredential = await _auth.signInWithCredential(oauthCredential);
-      
-      // Create/update user document
-      if (userCredential.user != null) {
-        final name = appleCredential.givenName != null && appleCredential.familyName != null
-            ? '${appleCredential.givenName} ${appleCredential.familyName}'
-            : userCredential.user!.displayName ?? 'Apple User';
-            
-        await _createUserDocument(userCredential.user!, {
-          'name': name,
-          'email': userCredential.user!.email ?? '',
-          'provider': 'apple',
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-      }
-      
-      return userCredential;
-    } catch (e) {
-      throw _handleAuthException(e);
-    }
+    throw 'Apple authentication not yet implemented. Use Google or email/password.';
   }
 
   // Password Reset
@@ -170,12 +109,8 @@ class AuthService {
   // Sign Out
   static Future<void> signOut() async {
     try {
-      await Future.wait([
-        _auth.signOut(),
-        _googleSignIn.signOut(),
-        FacebookAuth.instance.logOut(),
-      ]);
-      await _secureStorage.deleteAll();
+      await _auth.signOut();
+      await _googleSignIn.signOut();
     } catch (e) {
       throw _handleAuthException(e);
     }
@@ -217,11 +152,11 @@ class AuthService {
       if (user == null) throw Exception('No user logged in');
 
       // Update Firebase Auth profile
-      if (displayName != null || photoURL != null) {
-        await user.updateProfile(
-          displayName: displayName,
-          photoURL: photoURL,
-        );
+      if (displayName != null) {
+        await user.updateDisplayName(displayName);
+      }
+      if (photoURL != null) {
+        await user.updatePhotoURL(photoURL);
       }
 
       // Update Firestore document

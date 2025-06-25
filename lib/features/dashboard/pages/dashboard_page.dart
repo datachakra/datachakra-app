@@ -110,11 +110,7 @@ class DashboardPage extends ConsumerWidget {
                 width: double.infinity,
                 padding: const EdgeInsets.all(32),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: AppColors.primaryGradient,
-                  ),
+                  gradient: AppColors.primaryGradient,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

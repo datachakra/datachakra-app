@@ -10,16 +10,17 @@ import 'core/config/firebase_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Firebase (commented out for now due to version compatibility)
-  // try {
-  //   await Firebase.initializeApp(
-  //     options: FirebaseConfig.currentPlatform,
-  //   );
-  //   print('Firebase initialized successfully');
-  // } catch (e) {
-  //   print('Firebase initialization failed: $e');
-  //   // Continue without Firebase for now - will show error in auth
-  // }
+  // Initialize Firebase
+  try {
+    await Firebase.initializeApp(
+      options: FirebaseConfig.currentPlatform,
+    );
+    debugPrint('✅ Firebase initialized successfully');
+    debugPrint('🚀 DataChakra ready with real authentication');
+  } catch (e) {
+    debugPrint('❌ Firebase initialization failed: $e');
+    debugPrint('⚠️  Please check Firebase config');
+  }
   
   runApp(const ProviderScope(child: DataChakraApp()));
 }

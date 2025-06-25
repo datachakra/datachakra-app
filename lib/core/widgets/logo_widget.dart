@@ -20,16 +20,16 @@ class LogoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        _buildLogo(),
-        if (showText) ...[
-          const SizedBox(width: 8), // Reduced from 12 to 8
-          Flexible(child: _buildText(context)),
-        ],
-      ],
-    );
+    return showText 
+      ? Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildLogo(),
+            const SizedBox(width: 8),
+            Flexible(child: _buildText(context)),
+          ],
+        )
+      : _buildLogo();
   }
 
   Widget _buildLogo() {
@@ -55,6 +55,8 @@ class LogoWidget extends StatelessWidget {
             color: textColor ?? Theme.of(context).textTheme.headlineSmall?.color,
             fontSize: textSize,
           ),
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
         ),
         Text(
           'Ancient Wisdom Modern Technology',
@@ -63,6 +65,8 @@ class LogoWidget extends StatelessWidget {
             fontSize: (textSize ?? 12) * 0.6,
             fontWeight: FontWeight.w500,
           ),
+          overflow: TextOverflow.visible,
+          softWrap: false,
         ),
       ],
     );
