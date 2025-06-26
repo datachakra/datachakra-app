@@ -67,13 +67,13 @@ class DashboardPage extends ConsumerWidget {
                           }
                         }
                       },
-                      itemBuilder: (context) => [
+                      itemBuilder: (context) => const [
                         PopupMenuItem(
                           value: 'profile',
                           child: Row(
                             children: [
-                              const Icon(Icons.person),
-                              const SizedBox(width: 8),
+                              Icon(Icons.person),
+                              SizedBox(width: 8),
                               Text('Profile'),
                             ],
                           ),
@@ -82,19 +82,19 @@ class DashboardPage extends ConsumerWidget {
                           value: 'settings',
                           child: Row(
                             children: [
-                              const Icon(Icons.settings),
-                              const SizedBox(width: 8),
+                              Icon(Icons.settings),
+                              SizedBox(width: 8),
                               Text('Settings'),
                             ],
                           ),
                         ),
-                        const PopupMenuDivider(),
+                        PopupMenuDivider(),
                         PopupMenuItem(
                           value: 'logout',
                           child: Row(
                             children: [
-                              const Icon(Icons.logout, color: Colors.red),
-                              const SizedBox(width: 8),
+                              Icon(Icons.logout, color: Colors.red),
+                              SizedBox(width: 8),
                               Text('Sign Out', style: TextStyle(color: Colors.red)),
                             ],
                           ),
@@ -109,7 +109,7 @@ class DashboardPage extends ConsumerWidget {
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(32),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: AppColors.primaryGradient,
                 ),
                 child: Column(

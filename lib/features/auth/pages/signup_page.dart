@@ -270,8 +270,8 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                               child: RichText(
                                 text: TextSpan(
                                   style: Theme.of(context).textTheme.bodyMedium,
-                                  children: [
-                                    const TextSpan(text: 'I agree to the '),
+                                  children: const [
+                                    TextSpan(text: 'I agree to the '),
                                     TextSpan(
                                       text: 'Terms & Conditions',
                                       style: TextStyle(
@@ -279,7 +279,7 @@ class _SignupPageState extends ConsumerState<SignupPage> {
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
-                                    const TextSpan(text: ' and '),
+                                    TextSpan(text: ' and '),
                                     TextSpan(
                                       text: 'Privacy Policy',
                                       style: TextStyle(

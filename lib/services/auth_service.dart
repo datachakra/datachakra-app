@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -62,30 +61,6 @@ class AuthService {
     try {
       // Google Sign-In is temporarily disabled while configuring OAuth client
       throw Exception('Google Sign-In is temporarily unavailable. Please use email/password authentication. We\'re working on enabling Google login soon!');
-      
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
-      if (googleUser == null) return null;
-
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
-        idToken: googleAuth.idToken,
-      );
-
-      final userCredential = await _auth.signInWithCredential(credential);
-      
-      // Create/update user document
-      if (userCredential.user != null) {
-        await _createUserDocument(userCredential.user!, {
-          'name': userCredential.user!.displayName ?? 'Google User',
-          'email': userCredential.user!.email ?? '',
-          'provider': 'google',
-          'photoUrl': userCredential.user!.photoURL,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
-      }
-      
-      return userCredential;
     } catch (e) {
       throw _handleAuthException(e);
     }
@@ -180,14 +155,7 @@ class AuthService {
 
   // Handle authentication exceptions
   static String _handleAuthException(dynamic e) {
-    // Log the full error for debugging
-    print('🔍 Auth Error: $e');
-    print('🔍 Error Type: ${e.runtimeType}');
-    
     if (e is FirebaseAuthException) {
-      print('🔍 Firebase Auth Error Code: ${e.code}');
-      print('🔍 Firebase Auth Error Message: ${e.message}');
-      
       switch (e.code) {
         case 'user-not-found':
           return 'No user found with this email address.';
