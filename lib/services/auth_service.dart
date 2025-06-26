@@ -1,10 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
-  static final GoogleSignIn _googleSignIn = GoogleSignIn();
+  static final GoogleSignIn _googleSignIn = GoogleSignIn(
+    clientId: kIsWeb ? '928028959885-a1b53f4c952ba6eb3d2ec4.apps.googleusercontent.com' : null,
+  );
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Current user getter
@@ -59,8 +62,29 @@ class AuthService {
   // Google Sign-In
   static Future<UserCredential?> signInWithGoogle() async {
     try {
-      // Google Sign-In is temporarily disabled while configuring OAuth client
-      throw Exception('Google Sign-In is temporarily unavailable. Please use email/password authentication. We\'re working on enabling Google login soon!');
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) return null;
+
+      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await _auth.signInWithCredential(credential);
+      
+      // Create/update user document
+      if (userCredential.user != null) {
+        await _createUserDocument(userCredential.user!, {
+          'name': userCredential.user!.displayName ?? 'Google User',
+          'email': userCredential.user!.email ?? '',
+          'provider': 'google',
+          'photoUrl': userCredential.user!.photoURL,
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+      }
+      
+      return userCredential;
     } catch (e) {
       throw _handleAuthException(e);
     }
