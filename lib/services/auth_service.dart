@@ -5,10 +5,7 @@ import 'package:flutter/foundation.dart';
 
 class AuthService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
-  static final GoogleSignIn _googleSignIn = GoogleSignIn(
-    // Add web client ID for Google Sign-In
-    clientId: kIsWeb ? '928028959885-a1b53f4c952ba6eb3d2ec4.apps.googleusercontent.com' : null,
-  );
+  static final GoogleSignIn _googleSignIn = GoogleSignIn();
   static final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Current user getter
@@ -63,11 +60,8 @@ class AuthService {
   // Google Sign-In
   static Future<UserCredential?> signInWithGoogle() async {
     try {
-      // For web, we need to configure the proper Google Client ID
-      // This is a temporary implementation
-      if (kIsWeb) {
-        throw Exception('Google Sign-In requires additional setup for web. Please use email/password authentication for now, or contact support for Google Sign-In setup.');
-      }
+      // Google Sign-In is temporarily disabled while configuring OAuth client
+      throw Exception('Google Sign-In is temporarily unavailable. Please use email/password authentication. We\'re working on enabling Google login soon!');
       
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
       if (googleUser == null) return null;
